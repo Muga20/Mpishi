@@ -1,0 +1,236 @@
+.SpanHeader{
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #000000;
+    margin: 0px;
+    padding: 0px;
+}
+
+.SpanHeader-about{
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #000000;
+    margin: 0px;
+    padding: 0px;
+
+}
+.recipe-Data-p{
+    background-color:#ecf0f1;
+    font-size: 1.3rem;
+}
+.recipe-image{
+    border-radius: 3px;
+    
+}
+.category-and-cook{
+    display: flex;
+    padding-left: 10rem;
+    background-color: #e2e2e2;
+    border-radius: 2px;
+
+
+}
+.ingredients-div-start {
+    display: flex;
+    flex-direction: column;
+    background-color: #e2e2e2;
+    border-radius: 2px;
+    margin-left: 8rem;
+    width: 85%;
+    height: 100px;
+    padding-top: 1rem;
+ 
+}
+.content-body{
+  font-size: 1.4rem;
+
+}
+.ingredients-iv-start{
+    display: flex;
+    flex-direction: column;
+    background-color: #d1cece;
+    border-radius: 2px;
+    margin-left: 8rem;
+    width: 85%;
+    height: 210px;
+    padding-top: 1rem;
+  
+}
+.abuts-iv-start{
+
+    display: flex;
+    flex-direction: column;
+    background-color: #e2e2e2;
+    border-radius: 2px;
+    margin-left: 8rem;
+    width: 85%;
+    height: 100px;
+    padding-top: 1rem;
+
+}
+.ingredients-dv-start {
+    display: flex;
+    flex-direction: column;
+    background-color: #c2bdbd;
+    border-radius: 2px;
+    margin-left: 8rem;
+    width: 85%;
+    height: 100px;
+    padding-top: 1rem;
+}
+.cook-paragraph-div{
+    padding-left: 3rem;
+}
+.input-for-steps{
+   
+    border: none;
+    background-color: #e2e2e2;
+    font-size: 1.4rem;
+
+    
+}
+.inputFile{
+    background-color:#2471A3;;
+    border-radius: 5px;
+    width: 200px;
+    height: 40px;
+    color: #ffffff;
+    font-size: 1.4rem;
+    margin-left: 2rem;
+}
+.option-bar{
+  width: 300px;
+  background-color: #e2e2e2;
+  height: 40px;
+  border-radius: 5px;
+
+}
+.option-text{
+   text-align: center;
+}
+.input-for-Comment{
+   
+    border: 2px solid #a19c9c;
+    font-size: 1.4rem;
+    width: 80%;
+  
+    border-radius: 4px;
+   
+
+}
+
+.input-for-comments-div{
+    display: flex;
+    flex-direction: column;
+    background-color: #c2bdbd;
+    border-radius: 2px;
+    margin-left: 8rem;
+    width: 85%;
+    height: 300px;
+    padding-top: 1rem;
+}
+.comments{
+   font-size: 2.0rem;
+   
+    padding-top: 1.9rem;
+    padding-bottom: 1.5rem;
+
+}
+.button-for-comments{
+    background-color:#27ae60;;
+    border-radius: 5px;
+    width: 100px;
+    height: 40px;
+    color: #ffffff;
+    font-size: 1.4rem;
+    margin-left: 5rem;
+  
+
+}
+.input-for-comments-div-three{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+}
+.form-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem;
+}
+.input-text-area{
+    width: 80%;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding-top: 1rem;
+    border: solid 1px #2471A3;
+
+}
+.image-Category{
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+}
+.category-{
+    padding-left: 2rem  ;
+}
+.category-button{
+    background-color:#2471A3;;
+    border-radius: 5px;
+    width: 200px;
+    height: 40px;
+    color: #ffffff;
+    font-size: 1.4rem;
+    margin-left: 2rem;
+}
+.button-add-recipe{
+    background-color:#2471A3;;
+    border-radius: 5px;
+    width: 200px;
+    height: 40px;
+    color: #ffffff;
+    font-size: 1.4rem;
+    margin-left: 2rem;
+}
+.add-recipe-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem;
+
+}
+.input-recipe{
+    width: 200px;
+    border-radius: 5px;
+    border: solid 4px #2471A3;
+    
+
+
+}
+
+.add-recipe-div-two{
+    padding-left: 2rem;
+}
+.add-recipe-div-three{
+    padding-left: 2rem;
+   
+}
+.input-recipe-time{
+    width: 100px;
+    border-radius: 5px;
+    border: solid 4px #2471A3;
+}
+.input-recipe-serves{
+    width: 100px;
+    border-radius: 5px;
+    border: solid 4px #2471A3;
+}
+
+.flex-right-content-{
+    width: 85%;
+    float: right;
+
+}
+

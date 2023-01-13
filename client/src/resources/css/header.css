@@ -1,0 +1,24 @@
+.Notfound{
+    padding-top: calc(20% - 500px);
+    font-size: 35px;
+    color: #000000;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+.NotfoundP{
+    font-size: 20px;
+    color: #000000;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+.image404{
+    width: 40%;
+    height: 40%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

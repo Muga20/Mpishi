@@ -1,0 +1,123 @@
+
+/* The sidebar menu */
+.sidenav {
+    height: 100%; 
+    width:  20%; 
+    position: fixed; 
+    z-index: 1; 
+    top: 0;
+    left: 0;
+    background-color:#192a56; 
+    overflow-x: hidden; 
+    padding-top: 0;
+  } 
+  
+  /* The navigation menu links */
+  .sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+  }
+
+  /* profile picture */
+  .profile_picture{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-left: 20px;
+    margin-top: 20px;
+    border: solid 2px #d8dbe2;
+  }
+  .user_info{
+    display: flex;
+    padding-left: 3rem;
+    color: #f1f1f1;
+    font-size: 20px;
+  }
+
+  /* When you mouse over the navigation links, change their color */
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+  .padding_top{
+   padding-top:0;  
+  }
+
+.sections_content{
+  
+    width: calc(100% - 20%);
+    height: 1000px;
+    padding-top: 3.8rem;
+    float:right
+
+    }
+
+  .logoutButton{
+    background-color: black;
+    width: 100px;
+    border-radius: 8px;
+    color: white;
+    padding-left: 10%;
+    padding-right: 0rem;
+
+  }
+  .logoutButton:hover{
+    background-color: rgb(194, 59, 59);
+    color: white;
+  }
+  .logoutButtonSpan{
+    padding-right: 20px;
+  }
+
+  .mpishi_text{
+    font-size: 30px;
+    color: #d8dbe2;
+    padding-top: 3rem;
+  }
+ 
+
+    /* margin-left:; /* Same as the width of the sidebar */
+    /*padding: 0px 10px;
+   */
+  
+  /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+  @media screen and (min-height: 720px) {
+    .sidenav {
+      height: 100%; 
+      width:  20%; 
+      position: fixed; 
+      z-index: 1; 
+      top: 0;
+      left: 0;
+      background-color:#192a56; 
+      overflow-x: hidden; 
+      padding-top: 0;
+    } 
+    .sidenav a {
+      padding: 6px 8px 6px 16px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #818181;
+      display: block;
+    }
+  }
+
+
+  @media screen and (max-height: 500px) {
+    .sidenav {
+      height: 100%; 
+      width:  20%; 
+      position: fixed; 
+      z-index: 1; 
+      top: 10%;
+      left: 0;
+      background-color:#192a56; 
+      overflow-x: hidden; 
+      padding-top: 0;
+    } 
+    
+  }
+
