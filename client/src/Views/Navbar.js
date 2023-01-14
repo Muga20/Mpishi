@@ -36,6 +36,8 @@ export default function Navbar() {
        <Link className="a" to="/recipedata">Admin</Link>
        <Link className="a" to="/recipes">Recipes</Link>
        <Link className='a' to="/category">Categories</Link>
+       <Link className='a' to="/contact">Contact</Link>
+
     </nav>
 
     <div className="icons">

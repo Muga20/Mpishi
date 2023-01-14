@@ -402,6 +402,7 @@ header .icons #menu-bars{
 
 .about .row .content{
     flex:1 1 45rem;
+    color: #d3d7db;
 }
 
 .about .row .content h3{
@@ -685,7 +686,7 @@ header .icons #menu-bars{
     color:var(--black);
 }
 
-.sub-footer .box-container .box a{
+.sub-footer .box-container .box .a{
     display: block;
     padding:.5rem 0;
     font-size: 1.5rem;

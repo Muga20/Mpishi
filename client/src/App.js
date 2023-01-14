@@ -23,6 +23,8 @@ import Category from './client/Category';
 import EditProfille from './client/EditProfille';
 import About from './pages/About';
 import SubFooter from './Views/SubFooter';
+import ResetPassword from './authentication/ResetPassword';
+import Contact from './pages/Contact';
 
 
 
@@ -50,6 +52,8 @@ import SubFooter from './Views/SubFooter';
       {/** Authentication Routes  */}
       <Route path='/login' element={!user ? <Login /> :<Navigate to="/" /> }/>
       <Route path='/signup' element={!user ? <Signup/>:<Navigate to ="/" /> } />
+      <Route path='/signup' element={!user ? <ResetPassword /> :<Navigate to ="/" /> } />
+
 
 
        {/** Recipe Routes  */}
@@ -65,13 +69,15 @@ import SubFooter from './Views/SubFooter';
        <Route path= '/edit_category/:id' element={  <EditCategory />} />
        <Route path='/category' element={ user ? <Category /> :<Navigate to="/login" /> }/>
 
-      <Route path='/search' element={<Search />} />
+       <Route path='/search' element={<Search />} />
 
     
 
        {/** Comments Routes  */}
       <Route path='/comments' element={ user ? <Comments /> :<Navigate to="/login" /> }/>
       <Route path='/about' element={  <About />   }/>
+      <Route path='/contact' element={  <Contact/>   }/>
+
 
       
 

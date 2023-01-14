@@ -6,6 +6,7 @@ import  RecipeRoutes from "./routes/recipe.js";
 import CategoryRoutes from "./routes/category.js"
 import ReviewsRoutes from "./routes/reviews.js"
 import CommentsRoutes from "./routes/comments.js"
+import ContactRoutes from "./routes/feedback.js";
 
 import cors from 'cors'
 
@@ -33,6 +34,7 @@ app.use('/Images', express.static('./Images'))
   app.use('/category' , CategoryRoutes);
   app.use('/reviews' , ReviewsRoutes);
   app.use('/comments' , CommentsRoutes); 
+  app.use('/contact' , ContactRoutes);
 
 
 // app.use("/" ,(req,res) =>{
