@@ -20,11 +20,12 @@ import CreateCategory from './pages/CreateCategory';
 import EditCategory from './pages/EditCategory';
 import Search from './pages/Search';
 import Category from './client/Category';
-import EditProfille from './client/EditProfille';
+import EditProfile from './client/EditProfile';
 import About from './pages/About';
 import SubFooter from './Views/SubFooter';
 import ResetPassword from './authentication/ResetPassword';
 import Contact from './pages/Contact';
+import Reset from './authentication/Reset';
 
 
 
@@ -46,13 +47,15 @@ import Contact from './pages/Contact';
       {/** user page Routes  */}
       <Route path="/users" element={user ? <Users/> :<Navigate to="/login" /> } />
       <Route path= '/userdata' element={ <UserData /> } />
-      <Route path='edit_profile/:id' element={user ? <EditProfille /> :<Navigate to="/login" />} />
+      <Route path='edit_profile/:id' element={user ? <EditProfile /> :<Navigate to="/login" />} />
 
 
       {/** Authentication Routes  */}
       <Route path='/login' element={!user ? <Login /> :<Navigate to="/" /> }/>
       <Route path='/signup' element={!user ? <Signup/>:<Navigate to ="/" /> } />
-      <Route path='/signup' element={!user ? <ResetPassword /> :<Navigate to ="/" /> } />
+      <Route path='/resetPassword/:id' element={!user ? <ResetPassword /> :<Navigate to ="/" /> } />
+      <Route path='/reset' element={!user ? <Reset />:<Navigate to ="/" /> } />
+
 
 
 

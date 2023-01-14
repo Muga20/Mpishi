@@ -1,11 +1,11 @@
 import "../resources/css/userinfo.css";
 import Navbar from "../Views/Navbar";
-import React, {useState } from "react";
+import React, {useState ,useEffect } from "react";
 import { useParams ,useNavigate,} from "react-router-dom";
 import axios from "axios";
 import Footer from "../Views/Footer";
 
-function EditProfille() {
+function EditProfile() {
 
   const [first_name, setFirst_name] = useState('')
   const [last_name, setLast_name] = useState('')
@@ -30,6 +30,18 @@ function EditProfille() {
       
       navigate('/users');   
   }
+
+  const getMemberById = async () => {
+    const res = await axios.get(`http://localhost:5000/members/${id}`)
+    setFirst_name(res.data.first_name)
+    setLast_name(res.data.last_name)
+    setEmail(res.data.email)
+    setImage(res.data.image)
+}
+
+useEffect(() => {
+  getMemberById();
+}, []);
 
 
   return (
@@ -80,4 +92,4 @@ function EditProfille() {
   )
 }
 
-export default EditProfille
+export default EditProfile

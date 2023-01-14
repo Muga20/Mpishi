@@ -45,15 +45,7 @@ function Users() {
                 src={`http://localhost:5000/${user.user.image}`}
                 alt=""
               ></img>
-              <form method="post" onSubmit={createProfile}>
-                <input
-                  className="inputFile"
-                  type="file"
-                  onChange={(e) => setImage(e.target.files[0])}
-                />
-                <br />
-                <button type="submit">add</button>
-              </form>
+        
               <ul className="unlist">
                 <li>{user.user.first_name}</li>
                 <li className="list-name-div">{user.user.last_name}</li>
@@ -65,11 +57,7 @@ function Users() {
               <ul>
                 <h1>about</h1>
               </ul>
-              <ul>
-                <h3>Gender</h3>
-                <li>male</li>
-              </ul>
-
+             
               <ul>
                 <h3>More Info</h3>
                 <p>(injected humour and the like).</p>

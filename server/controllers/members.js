@@ -1,4 +1,5 @@
 import Members from "../models/members.js";
+import nodemailer from "nodemailer";
 import dotenv from 'dotenv';
 //get config vars
     dotenv.config();
@@ -14,6 +15,7 @@ const createToken = (id,first_name,last_name,email,role) => {
 
 },process.env.TOKEN_SECRET,{expiresIn:'2d'})
 }
+
 
 
 export const getAllMembers = async (req, res) => {
@@ -93,7 +95,7 @@ export const logInMembers = async (req, res) => {
 
    if (!user)  return res.sendStatus(400);
    
-
+;
   const dbPassword = user.password;
 
   bcrypt.compare(password, dbPassword).then((match) => {
@@ -110,7 +112,7 @@ export const logInMembers = async (req, res) => {
         user.first_name,
         user.last_name,
         user.email,
-          user.role
+        user.role
 
         )
       res.status(200).json({ user, token })
@@ -138,8 +140,8 @@ export const updateMembers = async (req, res) => {
   
       }  
       try {
-          const updt = Members.update(update ,{where: {id: id }})
-          res.status(200).send(updt)
+          const modify = Members.update(update ,{where: {id: id }})
+          res.status(200).send(modify)
       } catch (error) {
           res.json({ message: error.message });
       }
@@ -169,9 +171,9 @@ export const deleteMembers = async (req, res) => {
 
 
 
-const forgotPassword = async(req,res)=>{
+export const forgotPassword = async(req,res)=>{
   const { email} = req.body;
-  
+
   try {
     if (!email ) {
       return res.status(40).json({
@@ -180,29 +182,30 @@ const forgotPassword = async(req,res)=>{
       });
     }
       
-    const user = await User.findOne({ where: { email: email } });
+    const user = await Members.findOne({ where: { email: email } });
     if(!user){
-      res.status(404).json({msg:'email does not  exists'})
+      return res.sendStatus(400)
       
     }else{
+ 
     //create a nodeMailer Transport
-    const transporter = nodemailer.createTransport({
+    const transport  = nodemailer.createTransport({
       service:'gmail',
       auth:{
-        user:'ma07041705@gmail.com',
-        pass:"uagrmlhtgykwbrrr"
-
+        user:'murimib08@gmail.com',
+        pass:"fgpsdfeuzkfnqlgf"
+    
       }
     })
     //email option 
-    const mailOption={
-      // from:'brian@gmail.com',
-      to:`${user.email}`,
+    await transport.sendMail({
+      from: "murimib08@gmail.com",
+      to: `${email}`,
       subject:"Forgot password link",
       html:'<p>You requested for reset password, You have this email because you have request to recover your account Click on the following link bellow to proceed the link will expire in 5 min <a href="http://localhost:3000/resetPassword/' + user.id + '">Forgot Password</a> if you did not request this please ignore this email and your password will remain the same</p>'
-    }
+    })
     
-    transporter.sendMail(mailOption,(err ,response)=>{
+    transport.sendMail(mailOption,(err ,response)=>{
       if(err){
         console.log('There was an error',err);
       }else{
@@ -212,16 +215,16 @@ const forgotPassword = async(req,res)=>{
      })
     }
   } catch (error) {
-    return res.json({ message: error.message, success: false });
+    res.json({ message: error.message });
   }
-
 }
 
-const resetPassword =async(req,res)=>{
-  const { password ,confirm_password} = req.body;
-  const encryptPassword = await bcrypt.hash(password, 10);
 
-  if(password === confirm_password){
+export const resetPassword =async(req,res)=>{
+  const { newPassword, confirmPassword} = req.body;
+  const encryptPassword = await bcrypt.hash(newPassword, 10);
+
+  if(newPassword === confirmPassword){
     console.log("f")
   }else{
     return res.status(400).json({
@@ -231,7 +234,8 @@ const resetPassword =async(req,res)=>{
   }
 
   try {
-    const updatedUser = await User.update({password: encryptPassword}, { where: { id: req.params.id}})
+    const updatedUser = await Members.update({password: encryptPassword},
+       { where: { id: req.params.id}})
     res.status(200).json({
       success: true,
       user: updatedUser,
@@ -240,3 +244,5 @@ const resetPassword =async(req,res)=>{
     res.json({ message: error.message });
   }
 }
+
+

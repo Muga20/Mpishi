@@ -51,7 +51,7 @@ function Contact() {
 		</div>
 	</div>
     </div>
-	{/*<h1>toastify</h1>*/}
+	
 	</form>
 
 

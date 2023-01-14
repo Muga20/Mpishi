@@ -6,6 +6,7 @@ import Navbar from "../Views/Navbar";
 import Footer from "../Views/Footer";
 import { setHeaders } from "../headers/header";
 import axios from 'axios';
+import ResetPassword from "./ResetPassword";
 
 
 function Login() {
@@ -38,7 +39,13 @@ function Login() {
           setError("email and password doesn't much"); // /send errors if password and email does not much
         }
       }
+
+
+
+    
     };
+
+   
 
 
   return (
@@ -82,9 +89,15 @@ function Login() {
             <p>
               <Link className="registrationLink" to="/Signup">Create account if Not a User</Link>
             </p>
+            <p>
+            <Link className="registrationLink" to="/reset">Recover Account</Link>
+          </p>
+            <p>
+         
+          </p>
           </div>
-       
         </form>
+       
       </section>
     </div>
     <Footer />

@@ -1,54 +1,90 @@
 import React, { useState } from "react";
 //import {  } from "react-ify";
-import { SERVER_URL } from "../Constants/constants.js";
 import axios from "axios";
 import { useParams } from 'react-router-dom';
+import Navbar from "../Views/Navbar";
+import Footer from "../Views/Footer";
+import { useNavigate } from 'react-router-dom';  //import useNavigate
+
 
 
 function ResetPassword() {
-    const [password, setPassword] =useState("")
-    const [confirm_password, setConfirm_password] =useState("")
+  
+    const [oldPassword, setOldPassword] =useState("")
+    const [newPassword, setNewPassword] =useState("")
+    const [confirmPassword, setConfirmPassword] =useState("")
     const { id } = useParams();
+    let navigate = useNavigate() ; //initialize useNavigate
+    const [error, setError] = useState(false);
+
+     
 
     const resetPassword = async (e) => {
+
       e.preventDefault();
       try {
-          await axios.put(`${SERVER_URL}/auth/reset/${id}`, {
-         password: password,
-         confirm_password: confirm_password
+          await axios.patch(`http://localhost:5000/members/reset/${id}`, {
+          oldPassword,
+          newPassword,
+          confirmPassword
         })
-        .success("Password updated")
-       } catch (error) {
+
+        .then((res)=> {
+          console.log(res.data)
+
+          navigate('/login')
+        })
+       }  catch (error) {
         if (error.response?.status === 400) {
-          return error("Password Does Not Much"); //send errors 
+          setError(" Error "); //send errors if you have not sing in
+        } else if (error.response?.status === 401) {
+          setError(" Password Doesn't match"); // /send errors if password and email does not much
         }
       }
     };
 
   return (
-    <div className="flex flex-col justify-center items-center m-auto my-40 w-3/5 shadow-xl">
-        <p className='font-black text-2xl'>Reset Password</p>
-        <form className="w-full max-w-lg py-5" onSubmit={resetPassword}>
-            <div className="flex flex-wrap -mx-3 mb-6">
-                <div className="w-full px-3">
-                  <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-password">password</label>
-                  <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                   id="grid-first-name" type="text" value={password} onChange={(e) => setPassword(e.target.value)} />
-                </div>
-            </div>
+  <div>
+  <Navbar />
+  <div className="Top_padding">
 
-            <div className="flex flex-wrap -mx-3 mb-6">
-                <div className="w-full px-3">
-                  <label  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-password">Confirm Password</label>
-                  <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="grid-first-name" type="text" value={confirm_password} onChange={(e) => setConfirm_password(e.target.value)} />
-                </div>
-            </div>
+  <section className="container">
+    <form onSubmit={resetPassword}>
+ 
+      <div >
+        <center>
+       
+          <h1 className="login_h1"> <span className="login_span"> Recover your Account </span>  </h1>
+        </center>
+        <br />
+        <input
+          className="inputs"
+          type="password"
+          placeholder="Enter Password"
+          value={newPassword}
+          onChange={(e) => setNewPassword(e.target.value)}
+          required
+        />
+        <br />
+        <input
+          className="inputs"
+          type="password"
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        />
 
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex flex-col m-auto">Send Email</button>
-        </form>
-    </div>
+        {error && <p className="loginError">{error}</p>}
+      
+        <br />
+        <button className="login_btn_" type="submit">Update</button>
+      </div>
+   
+    </form>
+  </section>
+</div>
+<Footer />
+  </div>
   )
 }
-
 export default ResetPassword
