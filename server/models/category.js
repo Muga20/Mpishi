@@ -20,9 +20,6 @@ const Category = db.define(
     freezeTableName: true
 });
 
-
-
-
 db.sync()
 .then(()=>{
     console.log(' category table created');

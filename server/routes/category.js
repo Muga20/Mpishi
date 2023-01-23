@@ -7,6 +7,7 @@ import {
     getCategoryById,
     updateCategory,
     deleteCategory,
+    getInEachCategory
    
   
 } from "../controllers/category.js";
@@ -18,5 +19,8 @@ CategoryRoutes .get('/:id', getCategoryById);
 CategoryRoutes .post('/',upload,createCategory);
 CategoryRoutes .patch('/:id',upload,updateCategory);
 CategoryRoutes .delete('/:id', deleteCategory);
+CategoryRoutes .get('/recipes/:id', getInEachCategory);
+
+
  
 export default CategoryRoutes;

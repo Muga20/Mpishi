@@ -21,7 +21,7 @@ export const SidebarData = [
   },
   {
     title: 'Category',
-    path: '/create_category',
+    path: '/categorylist',
     icon:  <BiIcons.BiCategory />,
     cName: 'nav-text'
   },

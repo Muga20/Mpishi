@@ -15,7 +15,7 @@ function Home() {
   const navigate = useNavigate();
   const { user } = UseAuthContext();
   const { dispatch } = UseAuthContext();
-  const [fetchAPI, setApi] = useState([]);
+  const [data, setData] = useState([]);
 
 
   const logout = () => {
@@ -30,11 +30,12 @@ function Home() {
 
   useEffect(() => {
     getRecipe();
-  }, [fetchAPI]);
+  }, [data]);
 
   const getRecipe = async () => {
     const res = await axios.get("http://localhost:5000/recipe");
-    setApi(res.data);
+    setData(res.data);
+   
   };
   
 
@@ -71,8 +72,11 @@ function Home() {
     <section className="dishes" id="dishes">
     <h1 className="heading"> Recipe </h1>  
     <div className="box-container">
-    {fetchAPI.slice(0, 3).map((recipeItem, id) => (
- 
+
+    {Array.isArray(data)
+
+      ? data.slice(0, 3).map((recipeItem, id) => (
+
         <div className="image-box" key={id}>
 
         <img src={`http://localhost:5000/${recipeItem.image}`} alt="" />
@@ -98,10 +102,11 @@ function Home() {
             <i class="fa-solid fa-bowl-food"></i>
             </Link>
           )}
+          
 
         </div>
        
-      ))}
+      )):null}
     </div>
   </section>
 

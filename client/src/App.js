@@ -26,6 +26,7 @@ import SubFooter from './Views/SubFooter';
 import ResetPassword from './authentication/ResetPassword';
 import Contact from './pages/Contact';
 import Reset from './authentication/Reset';
+import CreateList from './pages/CategoryList';
 
 
 
@@ -71,7 +72,7 @@ import Reset from './authentication/Reset';
        <Route path= '/create_category' element={  <CreateCategory />} />
        <Route path= '/edit_category/:id' element={  <EditCategory />} />
        <Route path='/category' element={ user ? <Category /> :<Navigate to="/login" /> }/>
-
+       <Route path='/categorylist' element={<CreateList />} />
        <Route path='/search' element={<Search />} />
 
     

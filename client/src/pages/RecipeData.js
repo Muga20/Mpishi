@@ -54,7 +54,8 @@ const getRecipe = async () => {
     </tr>
     </thead>
     <tbody>
-    {recipes.map((recipe) => (
+    {Array.isArray(recipes)
+      ?recipes.map((recipe) => (
     <tr key={recipe.id}>
     <td>{recipe.id}</td>
     <td><img className="recipe-image-show" src={`http://localhost:5000/${recipe.image}`} alt="recipe" width="100" height="100" /></td>
@@ -72,7 +73,7 @@ const getRecipe = async () => {
     
 
     </tr>
-    ))}
+    )):null}
     </tbody>
     </table>
 

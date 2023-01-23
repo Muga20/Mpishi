@@ -1,4 +1,5 @@
 import Category from '../models/category.js';
+import Recipe from '../models/recipe.js';
 
 
 export const getAllCategory = async (req, res) => {
@@ -70,6 +71,17 @@ export const deleteCategory= async (req, res) => {
     } catch (error) {
         res.json({ message: error.message });
     }  
+}
+
+export const getInEachCategory = async(req, res)=> {
+    const id = req.params.id
+
+    const data = await Category.findOne({
+        include:[{model:Recipe , as: 'recipe'}],
+        where:{ id:id }
+    })
+
+    res.status(200).send(data)
 }
 
 

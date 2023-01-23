@@ -45,7 +45,7 @@ function AddRecipe() {
         try {
             await axios.post('http://localhost:5000/recipe', formData,)
 
-            //navigate('/recipedata')
+            navigate('/recipedata')
         } catch (error) {
             console.log(error)
         }

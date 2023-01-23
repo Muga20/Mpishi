@@ -18,16 +18,16 @@ const Recipe = db.define(
         type: DataTypes.STRING
     },
     ingredients:{
-        type: DataTypes.STRING
+        type: DataTypes.TEXT
     },
     steps:{
-        type: DataTypes.STRING
+        type: DataTypes.TEXT
     },
     cook_time:{
         type: DataTypes.STRING
     },
     about_the_recipe:{
-        type: DataTypes.STRING
+        type: DataTypes.TEXT
     },
     serves :{
         type: DataTypes.STRING
@@ -38,9 +38,17 @@ const Recipe = db.define(
 });
 
 
-Recipe.belongsTo(Category,{
-    foreignKey:'cat_id'
+Category.hasMany(Recipe,{
+    foreignKey:'cat_id',
+    as: 'recipe'
 });
+
+Recipe.belongsTo(Category,{
+    foreignKey:'cat_id',
+    as:'recipe'
+});
+
+
 
 
 db.sync()
