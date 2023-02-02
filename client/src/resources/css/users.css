@@ -1,5 +1,4 @@
 
-/* The sidebar menu */
 .sidenav {
     height: 100%; 
     width:  20%; 
@@ -12,7 +11,7 @@
     padding-top: 0;
   } 
   
-  /* The navigation menu links */
+ 
   .sidenav a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
@@ -21,7 +20,7 @@
     display: block;
   }
 
-  /* profile picture */
+
   .profile_picture{
     width: 100px;
     height: 100px;
@@ -37,7 +36,7 @@
     font-size: 20px;
   }
 
-  /* When you mouse over the navigation links, change their color */
+ 
   .sidenav a:hover {
     color: #f1f1f1;
   }
@@ -79,11 +78,7 @@
   }
  
 
-    /* margin-left:; /* Same as the width of the sidebar */
-    /*padding: 0px 10px;
-   */
-  
-  /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+ 
   @media screen and (min-height: 720px) {
     .sidenav {
       height: 100%; 
@@ -120,4 +115,4 @@
     } 
     
   }
-
+ 

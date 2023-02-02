@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../Admin/Navbar'
+import Navbar from '../layouts/AdminNavbar'
 
 function Reviews() {
   return (

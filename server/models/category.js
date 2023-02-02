@@ -1,6 +1,7 @@
 
 import  Sequelize  from "sequelize";
 import db from "../config/config.js";
+import Recipe from "./recipe.js";
 
 
  
@@ -19,6 +20,16 @@ const Category = db.define(
 },{
     freezeTableName: true
 });
+
+Category.hasMany(Recipe,{
+    foreignKey:'cat_id',
+    as:'recipes'
+});
+
+Recipe.belongsTo(Category,{
+    foreignKey:'cat_id'
+});
+
 
 db.sync()
 .then(()=>{

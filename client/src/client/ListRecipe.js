@@ -4,23 +4,32 @@ import axios from "axios";
 import Footer from "../Views/Footer";
 import Navbar from "../Views/Navbar";
 import '../resources/css/styles.css'
-import Search from "../pages/Search";
 import SubFooter from "../Views/SubFooter";
+import RecipePagination from "../pagination/Pagination";
 
 
-function Recipes() {
+
+function ListRecipe() {
    
-    const [fetchAPI, setApi] = useState([]);
-  
+    const [recipe, setRecipe] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(9);
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = recipe.slice(indexOfFirstPost, indexOfLastPost);
+
+    
 
     useEffect(() => {
       getRecipe();
-    }, [fetchAPI]);
+    }, []);
   
     const getRecipe = async () => {
       const res = await axios.get("http://localhost:5000/recipe");
-      setApi(res.data);
-      console.log(fetchAPI)
+      setRecipe(res.data);
+ 
     };
     
   return (
@@ -28,14 +37,14 @@ function Recipes() {
       <Navbar />
       <div className="Top_padding" >
         <section className="menu  " id="menu">
-           <Search />
+          
         <h1 className="heading"> Recipes </h1>
 
           <h1 className="heading">  </h1>
 
           <div className="box-container">
-            {fetchAPI.slice(0,9).map((recipe, id) => (
-              <div className="box" key={fetchAPI.id}>
+            {currentPosts.map((recipe, id) => (
+              <div className="box" key={recipe.id}>
                 <div className="image">
                   <img src={`http://localhost:5000/${recipe.image}`} alt="" />
                  
@@ -55,6 +64,9 @@ function Recipes() {
               </div>
             ))}
           </div>
+
+          <RecipePagination postsPerPage={postsPerPage} totalPosts={recipe.length} paginate={paginate} currentPage={currentPage} />
+
         </section>
         </div>
 
@@ -69,4 +81,4 @@ function Recipes() {
   );
 }
 
-export default Recipes;
+export default ListRecipe;

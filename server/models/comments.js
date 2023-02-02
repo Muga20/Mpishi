@@ -14,7 +14,7 @@ const Comments = db.define(
     member_id:{
         type: DataTypes.INTEGER
     },
-        recipe_id:{
+    recipe_id:{
             type: DataTypes.INTEGER
         },
 },{
@@ -23,8 +23,8 @@ const Comments = db.define(
 
 
 Comments.belongsTo(Members,{foreignKey:'member_id'});
-Comments.belongsTo(Recipe,{foreignKey:'recipe_id'});
 
+Comments.belongsTo(Recipe,{foreignKey:'recipe_id'});
 
 db.sync()
 .then(()=>{

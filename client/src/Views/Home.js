@@ -8,8 +8,9 @@ import Navbar from "../Views/Navbar.js";
 import Footer from "../Views/Footer.js";
 import { UseAuthContext } from "../hooks/UseAuthContext";
 import { useNavigate } from "react-router-dom";
-import About from "../pages/About";
+import About from "../client/About";
 import SubFooter from "./SubFooter";
+import Blog from "../Admin/Blog";
 
 function Home() {
   const navigate = useNavigate();
@@ -30,14 +31,17 @@ function Home() {
 
   useEffect(() => {
     getRecipe();
-  }, [data]);
+  }, []);
 
   const getRecipe = async () => {
     const res = await axios.get("http://localhost:5000/recipe");
+   
     setData(res.data);
    
   };
-  
+
+const [showModal, setShowModal] = useState(false);
+
 
   function onLinkClick(e) {
     e.preventDefault();
@@ -69,13 +73,12 @@ function Home() {
         </div>
       </section>
 
+    
     <section className="dishes" id="dishes">
     <h1 className="heading"> Recipe </h1>  
     <div className="box-container">
 
-    {Array.isArray(data)
-
-      ? data.slice(0, 3).map((recipeItem, id) => (
+    {data.slice(0, 3).map((recipeItem, id) => (
 
         <div className="image-box" key={id}>
 
@@ -106,14 +109,16 @@ function Home() {
 
         </div>
        
-      )):null}
+      ))}
     </div>
   </section>
 
   {/** About page is Added here */}
       <About />
 
-
+  {/** Blog page is added here */}
+       <Blog />
+       
   {/** Sub Footer is added here */}
      <SubFooter />
 

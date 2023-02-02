@@ -12,6 +12,14 @@
 
     --box-shadow:0 .5rem 1.5rem rgba(0,0,0,.1);
 } 
+#top_space{
+    margin: 5%  0 0  0;
+    
+}
+#top_space2{
+    margin: 3.2%  0 0  0;
+    
+}
 
 *{
     font-family: 'Nunito', sans-serif;
@@ -22,6 +30,7 @@
    
    
 }
+
 
 .rating-star{
     color:var( --green);
@@ -43,8 +52,24 @@ section{
 section:nth-child(even){
     background:#1C2833;
 }
-
-
+.search-div{
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2rem;
+}
+.SearchButton{
+    background-color:rgb(237, 244, 252);
+    color:rgb(15, 14, 14);
+    border-radius: 5px;
+    border: 1px solid white;
+    padding: 5px;
+    width: 300px;
+    height: 50px;
+  
+  
+}
 
 .serach_list{
     background-color:rgb(237, 244, 252);
@@ -109,60 +134,6 @@ font-size: 22px;
 }
 
 
-
-.main_header{
-    position: fixed;
-    top:0; left: 0; right:0;
-    background: #17202A;
-    padding:1rem 7%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 1000;
-    box-shadow: var(--box-shadow);
-}
-
-header .logo{
-    color:var(--black);
-    font-size: 2.5rem;
-    font-weight: bolder;
-}
-
-header .logo i{
-    color:var(---lightblue);
-}
-
-header .navbar .a{
-    font-size: 1.7rem;
-    border-radius: .5rem;
-    padding:.5rem 1.5rem;
-    color:var(--white);
-}
-
-
-header .navbar a:hover{
-    color:#fff;
-    background: var(--lightblue);
-}
-
-header .icons{
-    display: flex;
-    align-items: center;
-}
-
-header .icons i,
-header .icons a{
-    cursor: pointer;
-    margin-left: .5rem;
-    height:4.5rem;
-    line-height: 4.5rem;
-    width:4.5rem;
-    text-align: center;
-    font-size: 1.7rem;
-    color:var(--black);
-    border-radius: 50%;
-    
-}
 .logout_btn{
     background: var(--red);
     color:var(--white);
@@ -186,26 +157,14 @@ header .icons a{
 
 
 
-header .icons #menu-bars{
-    display: none;
-}
+
 
 .users_email{
     font-size: 20px;
     color:black;
    
   }
-#search-form{
-    position: fixed;
-    top:-110%; left:0; 
-    height:100%; width:100%;
-    z-index: 1004;
-    background:rgba(0,0,0,.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding:0 1rem;
-}
+
 
 .home .home-slider .slide{
     display: flex;
@@ -380,54 +339,6 @@ header .icons #menu-bars{
     margin-right: 1rem;
     font-size: 2.5rem;
 }
-.about{
-    background:#192530;
-
-}
-
-.about .row{
-    display: flex;
-    flex-wrap: wrap;
-    gap:1.5rem;
-    align-items: center;
-}
-
-.about .row .image{
-    flex:1 1 45rem;
-}
-
-.about .row .image img{ 
-    width: 100%;
-}
-
-.about .row .content{
-    flex:1 1 45rem;
-    color: #d3d7db;
-}
-
-.about .row .content h3{
-    color:var(--black);
-    font-size: 4rem;
-    padding:.5rem 0;
-}
-
-.about .row .content p{
-    color:var(--light-color);
-    font-size: 1.5rem;
-    padding:.3rem 0;
-    line-height: 2;
-}
-
-.about .row .content .icons-container{
-    display: flex;
-    gap:1rem;
-    flex-wrap: wrap;
-    padding:1rem 0;
-    margin-top: .5rem;
-}
-
-
-
 
 .Top_padding{
     padding-top: 4.5rem;
@@ -583,6 +494,8 @@ header .icons #menu-bars{
 }
 
 @media (max-height: 800px) {
+
+
     footer{
         margin-top: 15.0rem;
         display: flex;
@@ -628,43 +541,8 @@ header .icons #menu-bars{
 }
 
 
-.loader-container{
-    position: fixed;
-    top:0; left:0;
-    height:100%; 
-    width:100%;
-    z-index: 10000;
-    background:#fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
 
-.loader-container img{
-    width:35rem;
-}
 
-.loader-container.fade-out{
-    top:-110%;
-    opacity:0;
-}
-.recipes_section{
-    background-color:rgb(30, 37, 44)
-}
-.SearchButton{
-    background-color:rgb(30, 37, 44);
-    color:white;
-    border-radius: 5px;
-    border: 1px solid white;
-    padding: 5px;
-    margin-left: 10px;
-}
-
-.logout-btn{
-    padding-left: 0;
-    
-}
 
 
 /* sub footer css  */
@@ -741,7 +619,7 @@ header .icons #menu-bars{
         font-size: 55%;
     }
     
-    header{
+    .main_header{
         padding:1rem 2rem;
     }
 
@@ -752,44 +630,7 @@ header .icons #menu-bars{
 
 }
 
-@media (max-width:768px){
 
-    header .icons #menu-bars{
-        display: inline-block;
-    }
-
-    header .navbar{
-        position: absolute;
-        top:100%; left:0; right:0;
-        background:#fff;
-        border-top: .1rem solid rgba(0,0,0,.2);
-        border-bottom: .1rem solid rgba(0,0,0,.2);
-        padding:1rem;
-        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-    }
-
-    header .navbar.active{
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-    }
-
-    header .navbar .a{
-        display: block;
-        padding:1.5rem;
-        margin:1rem;
-        font-size: 2rem;
-        background:#eee;
-    }
-
-    #search-form #search-box{
-        width:90%;
-        margin:0 1rem;
-    }
-
-    .home .home-slider .slide .content h3{
-        font-size: 5rem;
-    }
-
-}
 
 @media (max-width:450px){
 

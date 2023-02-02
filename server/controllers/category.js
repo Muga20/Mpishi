@@ -42,21 +42,20 @@ export const createCategory= async (req, res) => {
 
  
 export const updateCategory = async (req, res) => {
+    let id = req.params.id;
+    let update = {};
     
-    let id = req.params.id
+    if (req.body.name) update.name = req.body.name;
+    if (req.file) update.image = req.file.path;
     
-        let update = {
-            name: req.body.name,
-            image: req.file.path,
-        }  
-        try {
-            const resp = await Category.update(update ,{where: {id: id }})
-            res.status(200).send(resp)
-        } catch (error) {
-            res.json({ message: error.message });
-        }
-    
-}
+    try {
+        const resp = await Category.update(update, { where: { id: id } });
+        res.status(200).send(resp);
+    } catch (error) {
+        res.json({ message: error.message });
+    }
+};
+
  
 export const deleteCategory= async (req, res) => {
     try {
@@ -73,17 +72,34 @@ export const deleteCategory= async (req, res) => {
     }  
 }
 
-export const getInEachCategory = async(req, res)=> {
-    const id = req.params.id
+// export const getInEachCategory = async(req, res)=> {
+//     const id = req.params.id
 
-    const data = await Category.findOne({
-        include:[{model:Recipe , as: 'recipe'}],
-        where:{ id:id }
-    })
+//     const data = await Category.findOne({
+//         include:[{model:Recipe , as: 'recipe'}],
+//         where:{ id:id }
+//     })
 
-    res.status(200).send(data)
-}
+//     res.status(200).send(data)
+// }
 
+// export const getInEachCategory = async(req, res) => {
+//     try {
+//         const id = req.params.id
+
+//         const category = await Category.findByPk(id, {
+//             include: [{ model: Recipe, as: 'recipes' }]
+//         });
+
+//         if (!category) {
+//             return res.status(404).send({ error: 'Category not found' });
+//         }
+
+//         return res.status(200).send({ category });
+//     } catch (error) {
+//         return res.status(500).send({ error: 'An error occurred while fetching the category' });
+//     }
+// }
 
 
 

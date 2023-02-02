@@ -8,6 +8,7 @@ import ReviewsRoutes from "./routes/reviews.js"
 import CommentsRoutes from "./routes/comments.js"
 import ContactRoutes from "./routes/feedback.js";
 
+
 import cors from 'cors'
 
 // await db.sync()
@@ -35,6 +36,7 @@ app.use('/Images', express.static('./Images'))
   app.use('/reviews' , ReviewsRoutes);
   app.use('/comments' , CommentsRoutes); 
   app.use('/contact' , ContactRoutes);
+
 
 
 // app.use("/" ,(req,res) =>{

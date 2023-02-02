@@ -1,6 +1,6 @@
 import  Sequelize from "sequelize";
 import db from "../config/config.js";
-import Category from"./category.js"
+import Members from "./members.js";
 
  
 const { DataTypes } = Sequelize;
@@ -12,6 +12,9 @@ const Recipe = db.define(
         type: DataTypes.STRING
     }, 
     cat_id:{
+        type: DataTypes.INTEGER
+    },
+    member_id:{
         type: DataTypes.INTEGER
     },
     image:{
@@ -37,25 +40,11 @@ const Recipe = db.define(
     freezeTableName: true
 });
 
-
-Category.hasMany(Recipe,{
-    foreignKey:'cat_id',
-    as: 'recipe'
-});
-
-Recipe.belongsTo(Category,{
-    foreignKey:'cat_id',
-    as:'recipe'
-});
-
-
+ Recipe.belongsTo(Members,{foreignKey:'member_id'});
 
 
 db.sync()
-.then(()=>{
-    console.log(' recepis table created');
 
-})
 
 export default Recipe;
 

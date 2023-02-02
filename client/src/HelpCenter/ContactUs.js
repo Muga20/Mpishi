@@ -4,9 +4,12 @@ import Footer from '../Views/Footer';
 import Navbar from "../Views/Navbar";
 import axios from "axios"
 import { useState } from "react"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
-function Contact() {
+
+function ContactUs() {
 
 	const [ sent, setSent ] = useState(false)
 	const [ email, setEmail ] = useState("")
@@ -17,7 +20,7 @@ function Contact() {
 
 	const handleSend = async (e) => {
 		e.preventDefault()
-		alert(`thank you for your message`);
+		toast.success("Comment created successfully");
 		try {
 			await axios.post("http://localhost:5000/contact", {
 				name,
@@ -26,8 +29,10 @@ function Contact() {
 				message
 
 			})
+		
 		} catch (error) {
 			console.error(error)
+			toast.error("Failed to send message");
 		}
 	}
 
@@ -55,11 +60,22 @@ function Contact() {
 	</form>
 
 
-		
+	<ToastContainer
+position="top-center"
+autoClose={2200}
+hideProgressBar={false}
+newestOnTop
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="dark"
+/>	
     <Footer/>
     </div>
   )
 }
 
-export default Contact
+export default ContactUs
 

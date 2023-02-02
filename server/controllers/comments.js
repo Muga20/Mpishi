@@ -5,10 +5,12 @@ import Recipe from '../models/recipe.js';
 
 export const getAllComments = async (req, res) => {
     try {
-        const listAllComments = await Comments.findAll({include:Members } );
+        const listAllComments = await Comments.findAll({
+            include: [Members, Recipe]
+        });
 
         res.json(listAllComments);
-        // console.log(listAllBlogs)
+      
     } catch (error) {
         res.json({ message: error.message });
     }  
@@ -30,11 +32,14 @@ export const getCommentsById = async (req, res) => {
 export const createComments= async (req, res) => {
 
     try {
-        const { text,} = req.body;
-        const newComments = await Comments.create({
+        const { text,  recipe_id,  member_id } = req.body;
+        const newComment = await Comments.create({
             text: text,
+            recipe_id: recipe_id,
+            member_id: member_id
         });
-        res.json(newComments);
+        
+        res.json(newComment);
     } catch (error) {
         res.json({ message: error.message });
     }

@@ -1,34 +1,38 @@
 import './App.css';
 import {BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 // import React, { useEffect, useState } from 'react'
-import Recipes from './client/Recipes';
+import Recipe from './client/ListRecipe';
 import Home from './Views/Home';
-import Login from './authentication/Login';
 import Signup from './authentication/Signup';
-import Users from './client/Users';
-import ReadRecipe from './client/ReadRecipe';
-import AddRecipe from './pages/AddRecipe';
-import {UseAuthContext} from './hooks/UseAuthContext'
-import NotFound from './Views/NotFound';
-import Comments from './pages/Comments';
-import RecipeData from './pages/RecipeData';
-import Reviews from './pages/Reviews';
-import UserData from './pages/UserData';
-// import Admin from './Admin/Admin';
-import EditRecipe from './pages/EditRecipe';
-import CreateCategory from './pages/CreateCategory';
-import EditCategory from './pages/EditCategory';
-import Search from './pages/Search';
-import Category from './client/Category';
-import EditProfile from './client/EditProfile';
-import About from './pages/About';
-import SubFooter from './Views/SubFooter';
+import Login from './authentication/Login';
+import FinishAccountSetup from './authentication/FinishAccountSetup';
 import ResetPassword from './authentication/ResetPassword';
-import Contact from './pages/Contact';
 import Reset from './authentication/Reset';
-import CreateList from './pages/CategoryList';
+import Users from './client/Users';
+import UserData from './client/UserData';
+import EditProfile from './client/EditProfile';
+import AboutUser from './client/AboutUser';
+import UserBlogs from './client/UserBlogs';
+import ReadRecipe from './client/ReadRecipe';
 
-
+import AddRecipe from './Admin/AddRecipe';
+import RecipeData from './Admin/RecipeData';
+import EditRecipe from './Admin/EditRecipe';
+import CreateCategory from './Admin/CreateCategory';
+import EditCategory from './Admin/EditCategory';
+import CategoryList from './Admin/CategoryList';
+import NotFound from './Views/NotFound';
+import {UseAuthContext} from './hooks/UseAuthContext'
+import Comments from './Admin/Comments';
+import About from './client/About';
+import Contact from './HelpCenter/ContactUs';
+import Blog from './Admin/Blog';
+import BlogData from './Admin/BlogData';
+import ReadBlog from './Admin/ReadBog';
+import EachUsersBlog from './client/EachUsersBlog';
+import Reviews from './HelpCenter/Reviews';
+import SubFooter from './Views/SubFooter';
+import AddBlog from './client/AddBlog';
 
 
  function App() {
@@ -47,57 +51,63 @@ import CreateList from './pages/CategoryList';
 
       {/** user page Routes  */}
       <Route path="/users" element={user ? <Users/> :<Navigate to="/login" /> } />
-      <Route path= '/userdata' element={ <UserData /> } />
-      <Route path='edit_profile/:id' element={user ? <EditProfile /> :<Navigate to="/login" />} />
+      <Route path= '/user-data' element={ <UserData/>} />
+      <Route path='edit_profile/:id' element={user ? <EditProfile/>:<Navigate to="/login" />} />
+      <Route path= '/about-user' element={user ?  <AboutUser/> :<Navigate to="/login" /> } />
+      <Route path= '/user-blogs' element={ user ? <UserBlogs/>:<Navigate to="/login" /> } />
+      
+
+
 
 
       {/** Authentication Routes  */}
-      <Route path='/login' element={!user ? <Login /> :<Navigate to="/" /> }/>
       <Route path='/signup' element={!user ? <Signup/>:<Navigate to ="/" /> } />
-      <Route path='/resetPassword/:id' element={!user ? <ResetPassword /> :<Navigate to ="/" /> } />
-      <Route path='/reset' element={!user ? <Reset />:<Navigate to ="/" /> } />
-
+      <Route path='/resetPassword/:id' element={!user ? <ResetPassword />  :<Navigate to ="/" /> } />
+      <Route path='/reset' element={!user ? <Reset /> :<Navigate to ="/" /> } />
+      <Route path='/login' element={!user ? <Login/>:<Navigate to ="/" /> } />
+      <Route path='/finish_account_setup/:id' element={ <FinishAccountSetup />} />
+      <Route path='/login' element={!user ? <FinishAccountSetup />:<Navigate to ="/" /> } />
 
 
 
        {/** Recipe Routes  */}
-      <Route path="/recipes" element={ user ? <Recipes/> :<Navigate to="/login" /> }/>
+      <Route path="/recipes" element={ user ? <Recipe/> :<Navigate to="/login" /> }/>
       <Route path="/read_recipe/:id" element={<ReadRecipe/> }/>
       <Route path='/add_recipe' element={ user ? <AddRecipe/> :<Navigate to="/login" /> }/>
-      <Route path= '/recipedata' element={ user ? <RecipeData /> :<Navigate to="/login" />} />
+      <Route path= '/recipe_data' element={ user ? <RecipeData /> :<Navigate to="/login" />} />
       <Route path= '/edit_recipe/:id' element={ <EditRecipe />} />
 
 
        {/** Category Routes  */}
-       <Route path= '/create_category' element={  <CreateCategory />} />
-       <Route path= '/edit_category/:id' element={  <EditCategory />} />
-       <Route path='/category' element={ user ? <Category /> :<Navigate to="/login" /> }/>
-       <Route path='/categorylist' element={<CreateList />} />
-       <Route path='/search' element={<Search />} />
+       <Route path= '/create_category' element={ user ?  <CreateCategory /> :<Navigate to="/login" /> } />
+       <Route path= '/edit_category/:id' element={ user ?  <EditCategory /> :<Navigate to="/login" /> } />
+       <Route path='/category-list' element={user ? <CategoryList /> :<Navigate to="/login" /> } />
 
     
 
        {/** Comments Routes  */}
-      <Route path='/comments' element={ user ? <Comments /> :<Navigate to="/login" /> }/>
-      <Route path='/about' element={  <About />   }/>
-      <Route path='/contact' element={  <Contact/>   }/>
+      <Route path='/comments' element={ user ? <Comments/> :<Navigate to="/login" /> }/>
+      <Route path='/about' element={ user ?  <About/> :<Navigate to="/login" />  }/>
+      <Route path='/contact' element={ <Contact/>  }/>
+    
 
 
-      
+      <Route path='/blog' element={ user ?  <Blog/> :<Navigate to="/login" />  }/>
+      <Route path='/add-blog' element={ user ?  <AddBlog />  :<Navigate to="/login" /> }/>
+      <Route path='/blog-data' element={user ?   <BlogData/> :<Navigate to="/login" />  }/>
+      <Route path='/read-blog/:id' element={ user ?  <ReadBlog/> :<Navigate to="/login" />  }/>
+      <Route path='/my-blogs/:id ' element={user ?   <EachUsersBlog/> :<Navigate to="/login" />  }/>
+    
 
     
        {/** Reviews Routes  */} 
-      <Route path='/reviews' element={ user ? <Reviews /> :<Navigate to="/login" /> }/>
+      <Route path='/reviews' element={ user ? <Reviews/> :<Navigate to="/login" /> }/>
 
 
-      <Route path='/about' element={  <SubFooter/>   }/>
+      <Route path='/about' element={  <SubFooter/>  }/>
 
   
-   
-    
-   
-    
-   
+  
       </Routes>
       </BrowserRouter>
     </div>

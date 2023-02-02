@@ -1,0 +1,87 @@
+.modal-body {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    margin:40px auto;
+    width:500px;
+    border: 1px solid  #4c4f50;
+    padding:20px;
+    border-radius: 6px;
+    background-color: #2a2d2e;
+    position: absolute;
+  }
+  
+  .comments-label {
+    display: inline-block;
+    margin-bottom: 8px;
+    width: 150px;
+  }
+  
+  .comments-form-control{
+    background:  #2a2d2e;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    outline: 0;
+    width: 400px;
+    box-sizing: border-box;
+    background-color: #e8eeef;
+    color: #000000;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+    margin-bottom: 30px;
+   
+   
+  }
+  .comments-form-control:focus {
+    background: #d2d9dd
+  }
+  
+  .comments-form-control-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+  }
+  .modal-content{
+    background-color: #2a2d2e;
+    float: right;
+  }
+  .modal-content-button{
+    background-color: #2a2d2e;
+    color: #fff;
+    font-size: 2.5rem;
+  }
+  .modal-content-button:hover{
+    background-color: #2a2d2e;
+    color: rgb(245, 13, 13);
+    font-size: 2.5rem;
+  }
+  .modal-content-button:focus{
+    background-color: #2a2d2e;
+    color: rgb(245, 13, 13);
+    font-size: 2.5rem;
+  }
+  .comments-form-control-div-button{
+    background-color: #2a2d2e;
+    color: #fff;
+    font-size: 2.5rem;
+  }
+  .comments-form-control-button{
+    background-color: #696c6d;
+    color: #fff;
+    font-size: 2.5rem;
+    border-radius: 6px;
+    border: none;
+    padding: 10px 20px;
+    font-weight: 700;
+  }
+  .comments-form-control-button:hover{
+    background-color: #0abbf7;
+    color: #fff;
+    font-size: 2.5rem;
+    border-radius: 6px;
+    border: none;
+    padding: 10px 20px;
+    font-weight: 700;
+  }
+
+  

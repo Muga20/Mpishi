@@ -11,6 +11,7 @@ import {
     logInMembers,
     forgotPassword,
     resetPassword,
+    updatingMembersDetails,
   
 } from "../controllers/members.js";
  
@@ -22,9 +23,8 @@ UsersRoutes.post('/', upload,createMembers);
 UsersRoutes.post('/login',logInMembers);
 UsersRoutes.patch('/:id',upload, updateMembers);
 UsersRoutes.delete('/:id', deleteMembers);
-
 UsersRoutes.post('/forgotpassword',forgotPassword);
-
 UsersRoutes.patch('/reset/:id',resetPassword);
+UsersRoutes.patch('/update/:id',upload,updatingMembersDetails);
  
 export default UsersRoutes;

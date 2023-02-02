@@ -1,0 +1,279 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,600,300);
+
+
+hr {
+  background:#dedede;
+  border:0;
+  height:1px;
+}
+.user-blogs-body{
+    margin:0;
+  font-family: 'Open Sans', sans-serif;
+ 
+}
+
+.user-blogs-header{
+  overflow: hidden;
+  display:block;
+
+  top:0;
+  margin:0;
+  width:100%;
+  height:4px;
+  text-align:center;
+}
+
+.user-blogs-header ul {
+  margin:0;
+  padding:0;
+}
+
+.user-blogs-header ul li {
+  overflow:hidden;
+  display:block;
+  float:left;
+  width:20%;
+  height:4px;
+}
+
+.user-blogs-header .cor-1 {
+  background:#f1c40f;
+}
+
+.user-blogs-header .cor-2 {
+  background:#e67e22;
+}
+
+.user-blogs-header .cor-3 {
+  background:#e74c3c;
+}
+
+.user-blogs-header .cor-4 {
+  background:#9b59b6;
+}
+
+.user-blogs-header .cor-5 {
+  background-color: hsla(10,40%,50%,1);
+}
+
+.wrap {
+  width: 950px;
+  margin:25px auto;
+}
+
+.user-blogs-button{
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background: #3498db;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 800;
+  transition: all 0.5s ease;
+  border-radius: 5px;
+}
+
+.user-blogs-content-publish{
+    height: 70vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin: 0 auto;
+    padding: 10px 20px;
+  
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+
+}
+.pagination{
+ margin : 0 0 0 -40%;
+}
+
+
+.user-blogs-sidebar {
+  width:275px;
+  float:right;
+  background-color: rgb(219, 206, 206);
+  overflow-y: visible;
+}
+
+.user-blogs-sidebar .user-blogs-widget {
+  margin:0 0 25px;
+  padding:25px;
+  background:rgb(219, 211, 211);
+  transition: all 0.5s ease;
+  border-bottom: 2px solid #fff;
+}
+
+.user-blogs-sidebar .user-blogs-widget:hover {
+  border-bottom: 2px solid #3498db;
+}
+
+.user-blogs-sidebar .user-blogs-widget h2 {
+  margin:0 0 15px;
+  padding:0;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight:800;
+  color:#3498db;
+}
+
+.user-blogs-sidebar .user-blogs-widget p {
+  font-size: 14px;
+}
+
+.user-blogs-sidebar .user-blogs-widget p:last-child {
+  margin:0;
+}
+
+.users-blog-dis {
+  float:left;
+}
+
+.conteudo {
+  width:600px;
+  margin:25px auto;
+  padding:25px;
+  background: #fff;
+  border:1px solid #dedede;
+  -webkit-box-shadow: 1px 1px 1px 0px rgba(204,204,204,0.35);
+  -moz-box-shadow: 1px 1px 1px 0px rgba(204,204,204,0.35);
+  box-shadow: 1px 1px 1px 0px rgba(204,204,204,0.35);
+}
+
+.conteudo img {
+  margin:0 0 25px -25px;
+  max-width: 550px;
+  min-width: 550px;
+
+  min-height: 400px;
+  max-height: 400px;
+}
+
+.conteudo h1 {
+  margin:0 0 15px;
+  padding:0;
+  font-family: Georgia;
+  font-weight: normal;
+  color: rgb(92, 90, 90);
+}
+
+.conteudo p{
+  margin: 0;
+  color: rgb(10, 10, 10);
+
+}
+
+
+.conteudo .continue-lendo {
+  color:#000;
+  font-weight: 700; 
+  text-decoration: none;
+  transition: all 0.5s ease;
+}
+
+.conteudo .continue-lendo:hover {
+  margin-left:10px;
+}
+
+.post-info {
+  float: right;
+  margin: -10px 0 15px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 960px) {
+  
+  .header {
+  position:inherit;
+}
+  
+.wrap {
+  width: 90%;
+  margin:25px auto;
+
+
+}
+.user-blogs-sidebar {
+  width:100%;
+  float:right;
+    margin:25px 0 0;
+}
+  
+ .user-blogs-sidebar .user-blogs-widget {
+  padding:5%;
+}
+  
+  nav.menu ul {
+  width: 100%;
+}
+  
+    nav.menu ul {
+  float:inherit;
+}
+  
+  nav.menu ul li {
+  float:inherit;
+  margin:0;
+}
+  
+nav.menu ul a {
+  padding:15px;
+  font-size: 16px;
+  border-bottom:1px solid #16a085;
+  border-top:1px solid #1abf9f;
+}
+  
+.users-blog-dis{
+  width:90%;
+}
+  
+.conteudo {
+  float:inherit;
+  width:101%;
+  padding:5%;  
+  margin:0 auto 25px;
+  background: #fff;
+  border:1px solid #dedede;
+}
+
+.conteudo img {
+  margin:0 0 25px -5%;
+  max-width: 110%;
+  min-width: 110%;
+}
+  
+    .conteudo .continue-lendo:hover {
+  margin-left:0;
+}
+
+
+}
+
+@media screen and (max-width: 460px) {
+ 
+  nav.menu ul a {
+  padding:15px;
+  font-size: 14px;
+}
+  
+.user-blogs-sidebar {
+  display:none
+}
+  .post-info {
+  display:none;
+}
+  
+  .conteudo {
+  margin:25px auto;
+  }
+  
+  .conteudo img {
+  margin:-5% 0 25px -5%;
+}
+
+  
+}

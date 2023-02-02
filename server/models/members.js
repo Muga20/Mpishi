@@ -1,11 +1,13 @@
 
 import  Sequelize  from "sequelize";
 import db from "../config/config.js";
+import Blogs from "./blog.js";
  
 const { DataTypes } = Sequelize;
  
 const Members = db.define('members',{
 
+   
     first_name:{
         type: DataTypes.STRING
     },
@@ -18,6 +20,12 @@ const Members = db.define('members',{
     password:{
         type: DataTypes.STRING
     },
+    phone :{
+        type: DataTypes.STRING
+    },
+    gender:{
+        type: DataTypes.STRING
+    },
     role:{
         type: Sequelize.BOOLEAN, 
         allowNull: false, 
@@ -26,12 +34,21 @@ const Members = db.define('members',{
     image:{
         type:DataTypes.STRING,
         default:true
-    }
-   
+    },
+    username:{
+        type:DataTypes.STRING,
+        default:true
+    },
+  
 
+   
 },{
     freezeTableName: true
 });
+
+
+
+
 db.sync()
 .then(()=>{
     console.log(' member table created');
