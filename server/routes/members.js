@@ -13,6 +13,7 @@ import {
     resetPassword,
     updatingMembersDetails,
   
+  
 } from "../controllers/members.js";
  
 const UsersRoutes = express.Router();
@@ -26,5 +27,6 @@ UsersRoutes.delete('/:id', deleteMembers);
 UsersRoutes.post('/forgotpassword',forgotPassword);
 UsersRoutes.patch('/reset/:id',resetPassword);
 UsersRoutes.patch('/update/:id',upload,updatingMembersDetails);
+
  
 export default UsersRoutes;

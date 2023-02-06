@@ -1,0 +1,67 @@
+
+.recipe-read-menu{
+    background-color: rgb(30, 37, 44);
+    padding-bottom: 3rem;
+}
+.recipe-read-box-container{
+    display: flex;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap:1.5rem;
+    margin: 0 0 0 10%;
+   
+}
+
+.recipe-read-box{
+    background: #151c24;
+    border:.1rem solid rgba(0,0,0,.2);
+    border-radius: 1rem;
+    box-shadow: var(--box-shadow); 
+    width: 30%;
+    height: auto;
+
+}
+.recipe-read-image:hover{
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 1rem;
+    opacity: 0.8;
+
+}
+
+ .recipe-read-image{
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 1rem;
+}
+.name-span{
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+
+.recipe-read-image-div{
+    overflow: hidden;
+    position: relative;
+}
+
+.recipe-read-box .recipe-content{
+    padding:2rem;
+    padding-top: 0;
+}
+.recipe-read-link{
+    color: aliceblue;
+    font-size: 1.5rem;
+}
+.recipe-read-link:hover{
+    color: aliceblue;
+    font-size: 2.2rem;
+    
+}

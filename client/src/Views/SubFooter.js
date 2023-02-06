@@ -16,7 +16,7 @@ function SubFooter() {
             <Link className='a' to="/" ></Link>
             <Link className='a' to="/recipes" >Recipe</Link>
             <Link className='a' to="/contact" >Contact</Link>
-            <Link className='a' to="/category" >Category</Link>
+            <Link className='a' to="/list-category" >Category</Link>
             <Link className='a' to="/user-blogs" >Blogs</Link>
           
 

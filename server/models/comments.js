@@ -26,6 +26,10 @@ Comments.belongsTo(Members,{foreignKey:'member_id'});
 
 Comments.belongsTo(Recipe,{foreignKey:'recipe_id'});
 
+Recipe .hasMany(Comments,{foreignKey:'recipe_id'});
+
+Members.hasMany(Comments,{foreignKey:'member_id'});
+
 db.sync()
 .then(()=>{
     console.log(' Comments table created');

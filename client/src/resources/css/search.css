@@ -6,7 +6,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  margin: 8% 0 0 55%;
+  margin: 7% 0 0 55%;
   padding : 30px;
   width: 40%;
   background-color:#2d343a;
@@ -15,6 +15,7 @@
   box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
   height: 100px;
   border-radius: 10px;
+  display: block;
   
 }
 
@@ -58,10 +59,18 @@
   }
   
   .suggested-searches {
-    display: flex;
+    display: block;
     flex-direction: column;
     align-items: center;
-    float: right;
+    margin: 6% 0 0 0;
+    background-color: #1C2833;
+    width: 100%;
+    height: auto;
+    font-size: 18px;
+    border-radius: 5px;
+    border: none;
+    border: 1px solid rgb(48, 47, 47);
+
 
   }
   
@@ -80,6 +89,7 @@
     font-size: 16px;
     margin-bottom: 10px;
     list-style-type: none;
+
   }
   
   .recipe-span {

@@ -6,7 +6,18 @@ import Recipe from '../models/recipe.js';
 export const getAllComments = async (req, res) => {
     try {
         const listAllComments = await Comments.findAll({
-            include: [Members, Recipe]
+            include: [
+                {
+                    model: Members,
+                   
+                },
+                {
+                    model: Recipe,
+                   
+                },
+            ],
+
+            order: [["createdAt", "DESC"]]
         });
 
         res.json(listAllComments);
@@ -21,14 +32,21 @@ export const getCommentsById = async (req, res) => {
         const getAllById = await Comments.findAll({
             where: {
                 id: req.params.id
-            }
+            },
+            include: [
+                {
+                  model: Members,
+                },
+              ],
+            limit: 5,
+            order: [["createdAt", "DESC"]]
         });
         res.json(getAllById [0]);
     } catch (error) {
         res.json({ message: error.message });
     }  
 }
- 
+
 export const createComments= async (req, res) => {
 
     try {

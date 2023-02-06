@@ -1,5 +1,6 @@
 import Category from "../models/category.js";
 import Recipe from "../models/recipe.js";
+import Comments from "../models/comments.js";
 
 export const getAllRecipes = async (req, res) => {
   try {
@@ -10,6 +11,7 @@ export const getAllRecipes = async (req, res) => {
           attributes: ["name"],
         },
       ],
+      order: [["createdAt", "DESC"]],
     });
     res.json(listAllRecipes);
   } catch (error) {
@@ -23,6 +25,12 @@ export const getRecipesById = async (req, res) => {
       where: {
         id: req.params.id,
       },
+      include: [
+        {
+          model: Comments,
+        },
+      ],
+      
     });
     res.json(getAllById[0]);
   } catch (error) {
@@ -58,6 +66,7 @@ export const createRecipes = async (req, res) => {
     about_the_recipe: req.body.about_the_recipe,
     serves: req.body.serves,
     member_id: req.body.member_id,
+    instructions: req.body.instructions,
   };
 
 
@@ -98,6 +107,9 @@ export const updateRecipes = async (req, res) => {
     }
     if (req.body.serves) {
       update.serves = req.body.serves;
+    }
+    if (req.body.instructions) {
+      update.instructions = req.body.instructions;
     }
     if (req.file) {
       update.image = req.file.path;

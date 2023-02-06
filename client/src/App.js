@@ -29,10 +29,19 @@ import Contact from './HelpCenter/ContactUs';
 import Blog from './Admin/Blog';
 import BlogData from './Admin/BlogData';
 import ReadBlog from './Admin/ReadBog';
-import EachUsersBlog from './client/EachUsersBlog';
+
 import Reviews from './HelpCenter/Reviews';
 import SubFooter from './Views/SubFooter';
 import AddBlog from './client/AddBlog';
+import WriteComment from './client/WriteComment';
+import DisplayBlogs from './client/DisplayBlogs';
+import HelpCenter from './client/HelpCenter';
+import Notification from './client/Notification';
+import Response from './client/Response';
+import Reply from './Admin/Reply';
+import ListCategory from './Admin/ListCategory';
+import ShowCategory from './Admin/ShowCategory';
+
 
 
  function App() {
@@ -78,10 +87,15 @@ import AddBlog from './client/AddBlog';
       <Route path= '/edit_recipe/:id' element={ <EditRecipe />} />
 
 
+
        {/** Category Routes  */}
        <Route path= '/create_category' element={ user ?  <CreateCategory /> :<Navigate to="/login" /> } />
        <Route path= '/edit_category/:id' element={ user ?  <EditCategory /> :<Navigate to="/login" /> } />
        <Route path='/category-list' element={user ? <CategoryList /> :<Navigate to="/login" /> } />
+       <Route path='/list-category' element={user ? <ListCategory/> :<Navigate to="/login" /> } />
+       <Route path='/show-category/:id' element={<ShowCategory /> } />
+
+
 
     
 
@@ -89,25 +103,27 @@ import AddBlog from './client/AddBlog';
       <Route path='/comments' element={ user ? <Comments/> :<Navigate to="/login" /> }/>
       <Route path='/about' element={ user ?  <About/> :<Navigate to="/login" />  }/>
       <Route path='/contact' element={ <Contact/>  }/>
-    
+      <Route path='/comment-on-a-recipe' element={ <WriteComment/>  }/>
 
+      {/** Blogs Routes  */}
 
       <Route path='/blog' element={ user ?  <Blog/> :<Navigate to="/login" />  }/>
       <Route path='/add-blog' element={ user ?  <AddBlog />  :<Navigate to="/login" /> }/>
       <Route path='/blog-data' element={user ?   <BlogData/> :<Navigate to="/login" />  }/>
       <Route path='/read-blog/:id' element={ user ?  <ReadBlog/> :<Navigate to="/login" />  }/>
-      <Route path='/my-blogs/:id ' element={user ?   <EachUsersBlog/> :<Navigate to="/login" />  }/>
-    
+      <Route path='/display-blogs' element={ user ?  <DisplayBlogs/> :<Navigate to="/login" /> }/>
 
     
        {/** Reviews Routes  */} 
       <Route path='/reviews' element={ user ? <Reviews/> :<Navigate to="/login" /> }/>
-
-
       <Route path='/about' element={  <SubFooter/>  }/>
+      <Route path='/help-center' element={ <HelpCenter />  }/>
 
-  
-  
+      {/** Notification Routes  */}
+      <Route path='/notification' element={ user ?  <Notification/> :<Navigate to="/login" /> }/>
+      <Route path='/response' element={  user ? <Response/> :<Navigate to="/login" />}/>
+      <Route path='/reply/:id' element={ user ?  <Reply/> :<Navigate to="/login" />}/>
+
       </Routes>
       </BrowserRouter>
     </div>

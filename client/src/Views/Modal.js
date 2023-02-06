@@ -4,7 +4,7 @@ import axios from "axios";
 import "../resources/css/search.css";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 
-const Search = ({ closeModal, children }) => {
+const Modal = ({ closeModal, children }) => {
   const [fetchAPI, setApi] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResult, setSearchResult] = useState([]);
@@ -47,27 +47,33 @@ const Search = ({ closeModal, children }) => {
             onChange={handleChange}
           />
         </div>
-        <div className="suggested-searches">
-          <span className="suggested">Suggested</span>
-          <div className="search-list">
-            {searchResult.slice(0, 1).map((recipe, id) => (
-              <ul key={id}>
-                <li className="list-name">
-                  <Link
-                    className="search-link"
-                    to={`/read_recipe/${recipe.id}`}
-                    onClick={() => localStorage.setItem(recipe._id)}
-                  >
-                    <span className="recipe-span">{recipe.name}</span>
-                  </Link>
-                </li>
-              </ul>
-            ))}
+        {searchTerm !== "" ? (
+          <div className="suggested-searches">
+          
+            <div className="search-list">
+              {searchResult.slice(0,5).map((recipe, id) => (
+                <ul key={id}>
+                  <li className="list-name">
+                    <Link
+                      className="search-link"
+                      to={`/read_recipe/${recipe.id}`}
+                      onClick={() => localStorage.setItem(recipe._id)}
+                    >
+                      <span className="recipe-span">{recipe.name}</span>
+                    </Link>
+                  </li>
+                </ul>
+              ))}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="suggested-searches">
+            <span className="suggested">Type Something </span>
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
-export default Search;
+export default Modal;

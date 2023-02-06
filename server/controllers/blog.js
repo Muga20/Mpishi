@@ -4,7 +4,10 @@ import BlogsComment from "../models/blogcomments.js";
 
 export const getAllBlogs = async (req, res) => {
   try {
-    const listAllBlogs = await Blogs.findAll({ include: Members });
+    const listAllBlogs = await Blogs.findAll({ 
+      include: Members ,
+      order: [["createdAt", "DESC"]],
+    });
     res.json(listAllBlogs);
   } catch (error) {
     res.json({ message: error.message });

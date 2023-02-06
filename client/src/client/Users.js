@@ -10,8 +10,7 @@ function Users() {
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
   const [image, setImage] = useState("");
-
-
+ 
   useEffect(() => {
     const fetchData = async () => {
     const { first_name, last_name ,image } = JSON.parse(localStorage.getItem("user"));
@@ -56,6 +55,7 @@ function Users() {
           </Link>
             </div>
         </div>
+    
       </div>
 
 </div>

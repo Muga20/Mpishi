@@ -15,6 +15,7 @@ function AddRecipe() {
   const [member_id, setMemberId] = useState("");
   const [cook_time, setCook_time] = useState("");
   const [about_the_recipe, setAbout_the_recipe] = useState("");
+  const [instructions, setInstructions] = useState("");
   const [serves, setServes] = useState("");
   const navigate = useNavigate(); //initialize useNavigate
   const inputRef = useRef(null);
@@ -55,6 +56,7 @@ function AddRecipe() {
     formData.append("about_the_recipe", about_the_recipe);
     formData.append("serves", serves);
     formData.append("member_id", member_id);
+    formData.append("instructions", instructions);
 
     await axios
       .post("http://localhost:5000/recipe", formData)
@@ -117,16 +119,17 @@ function AddRecipe() {
                     ))}
                   </select>
 
+              
                   <br />
-                  <textarea 
-                    rows="4" 
-                    cols="76" 
-                    type="text"
-                    className="user-inputs"
-                    placeholder="Steps"
-                    value={steps}
-                    onChange={(e) => setSteps(e.target.value)}
-                  />
+                  <textarea
+                  rows="4" 
+                  cols="76" 
+                  type="text"
+                  className="user-inputs"
+                  placeholder="instructions"
+                  value={instructions}
+                  onChange={(e) => setInstructions(e.target.value)}
+                />
                   <br />
                   <input
                     type="text"

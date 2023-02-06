@@ -94,20 +94,26 @@ export default function Navbar() {
             </Link>
             </li>
             <li className="drop-down-li">
+            <Link className="x" to='/notification'>
+               Notifications
+             </Link>
+             </li>
+            <li className="drop-down-li">
             <Link className="x" to="/reviews">
             Reviews
-          </Link>
+            </Link>
              </li>
              <li className="drop-down-li">
              <Link className="x" to='/add_recipe'>
-               AddRecipe
+               Create a Recipe
               </Link>
               </li>
              <li className="drop-down-li">
              <Link className="x" to='/create_category'>
-               CreateCategory
+               Create a Category
               </Link>
               </li>
+             
               <li className="drop-down-li">
               {user && (
                 <Link className="x" type="submit" onClick={handleClick}>

@@ -121,6 +121,9 @@
     width: auto;
     height: 40px;
    }
+   .links-to-recipe-{
+   background-color: #bd010a;
+   }
    .delete-button:hover{
     background-color: rgb(153, 4, 4);
     color: white;

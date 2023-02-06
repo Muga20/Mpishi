@@ -1,20 +1,21 @@
 import FeedBack from '../models/feedback.js';
 import Members from '../models/members.js';
-
+import Response from '../models/response.js';
+import Sequelize from "sequelize";
 
 
 export const getAllFeedBack = async (req, res) => {
     try {
-        const listAllFeedBack= await FeedBack.findAll({
-            include: [Members, FeedBack]
+        const listAllFeedBack = await FeedBack.findAll({
+            include: [Members],
+            order: [["createdAt", "DESC"]]
         });
         res.json(listAllFeedBack);
-      
     } catch (error) {
         res.json({ message: error.message });
     }  
 }
- 
+
 export const getFeedBackById = async (req, res) => {
     try {
         const getAllById = await FeedBack.findAll({
@@ -29,19 +30,20 @@ export const getFeedBackById = async (req, res) => {
 }
  
 export const createFeedBack= async (req, res) => {
-
     try {
-        const { message,   member_id } = req.body;
+        const { message, member_id, image } = req.body;
+     
         const newFeedBack = await FeedBack.create({
             message: message,
-            member_id: member_id
+            member_id: member_id,
+            image: image || null
         });
-        
         res.json(newFeedBack);
     } catch (error) {
-        res.json({ message: error.message });
+        res.status(500).json({ message: error.message });
     }
-}
+};
+
 
  
 export const deleteFeedBack= async (req, res) => {
@@ -58,6 +60,66 @@ export const deleteFeedBack= async (req, res) => {
         res.json({ message: error.message });
     }  
 }
+
+export const getInEachFeedBack = async (req, res) => {
+    try {
+        const getAllById = await FeedBack.findAll({
+            where: {
+                member_id: req.params.id
+            }
+        });
+        res.json(getAllById);
+    } catch (error) {
+        res.json({ message: error.message });
+    }  
+}
+
+export const createResponse = async (req, res) => {
+    try {
+        const { message, member_id, feedback_id } = req.body;
+     
+        const newResponse = await Response.create({
+            message: message,
+            member_id: member_id,
+            feedback_id: feedback_id
+        });
+        res.json(newResponse);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
+export const getAdminResponseById = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const response = await Response.findOne({
+            include: [{
+                model: FeedBack,
+                as: 'feedback',
+                required: false,
+            }],
+            where: {
+                id,
+             
+            }
+        });
+
+        if (!response) {
+            return res.status(404).json({ error: "Response not found" });
+        }
+
+        res.json(response);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+
+
+
+
+
 
 
 

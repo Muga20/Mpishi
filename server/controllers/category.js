@@ -4,7 +4,9 @@ import Recipe from '../models/recipe.js';
 
 export const getAllCategory = async (req, res) => {
     try {
-        const listAllCategories = await Category.findAll();
+        const listAllCategories = await Category.findAll(
+            
+        );
 
         res.json(listAllCategories);
         // console.log(listAllBlogs)
@@ -13,19 +15,24 @@ export const getAllCategory = async (req, res) => {
     }  
 }
  
-export const getCategoryById = async (req, res) => {
+export const getCategoryById = async(req, res) => {
     try {
-        const getAllById = await Category.findAll({
-            where: {
-                id: req.params.id
-            }
+        const id = req.params.id
+
+        const category = await Category.findByPk(id, {
+            include: [{ model: Recipe, as: 'recipes' }]
         });
-        res.json(getAllById [0]);
+
+        if (!category) {
+            return res.status(404).send({ error: 'Category not found' });
+        }
+
+        return res.status(200).send({ category });
     } catch (error) {
-        res.json({ message: error.message });
-    }  
+        return res.status(500).send({ error: 'An error occurred while fetching the category' });
+    }
 }
- 
+
 export const createCategory= async (req, res) => {
 
     try {
@@ -71,36 +78,6 @@ export const deleteCategory= async (req, res) => {
         res.json({ message: error.message });
     }  
 }
-
-// export const getInEachCategory = async(req, res)=> {
-//     const id = req.params.id
-
-//     const data = await Category.findOne({
-//         include:[{model:Recipe , as: 'recipe'}],
-//         where:{ id:id }
-//     })
-
-//     res.status(200).send(data)
-// }
-
-// export const getInEachCategory = async(req, res) => {
-//     try {
-//         const id = req.params.id
-
-//         const category = await Category.findByPk(id, {
-//             include: [{ model: Recipe, as: 'recipes' }]
-//         });
-
-//         if (!category) {
-//             return res.status(404).send({ error: 'Category not found' });
-//         }
-
-//         return res.status(200).send({ category });
-//     } catch (error) {
-//         return res.status(500).send({ error: 'An error occurred while fetching the category' });
-//     }
-// }
-
 
 
 

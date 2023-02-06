@@ -95,11 +95,11 @@ const closeComment = () => {
     </nav>
 </header>
      
+<h1 className='read-blog-h1'>{blogs.blog_title}</h1>
 
 <div class="user-bog-content">
 
-    <h1>{blogs.blog_title}</h1>
-
+   
     <article>
         <p>
         {blogs.blog_text}
@@ -107,9 +107,8 @@ const closeComment = () => {
     </article>
         
     <aside className='user-blog-aside'>
-        <img src="https://37.media.tumblr.com/8b4969985e84b2aa1ac8d3449475f1af/tumblr_n3iftvUesn1snvqtdo1_1280.jpg"/>
-
-        <img src={`http://localhost:5000/${blogs.blog_image}`}/>
+        
+        <img className='' src={`http://localhost:5000/${blogs.blog_image}`}/>
  
     </aside>
 </div> 

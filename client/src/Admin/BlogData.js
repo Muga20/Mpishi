@@ -24,11 +24,6 @@ function BlogData() {
     // Change page
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
-    const deleteBlog = async (id) => {
-      await axios.delete(`http://localhost:5000/blogs/${id}`);
-       fetchBlogs();
-  }
-  
 
 useEffect(() => {
   fetchBlogs();
@@ -47,6 +42,16 @@ useEffect(() => {
         }  
       };
    
+      const deleteBlog = async (id) => {
+
+        await axios.delete(`http://localhost:5000/blogs/${id}`);
+        fetchBlogs();
+      }
+      
+      useEffect(() => {
+        fetchBlogs();
+      }, []);
+      
   
 
   return (
@@ -75,20 +80,20 @@ useEffect(() => {
     <td>{blog.member.first_name}</td>
 
 
-{/* 
+
   <div className="actions"> 
-  <td  className="edit-button">
-  <button  onClick={ () => deleteBlog(blog.id) }  > Remove </button>
+  <td  className="delete-button">
+  <button className="links-to-recipe-" onClick={ () => deleteBlog(blog.id) } > Remove </button>
 
   </td>
-
+{/* 
   <td className="delete-button">
   <Link  to={`/read-blog/${blog.id}`} > Read </Link>
   </td>
-
+*/}
   </div>
 
-*/}
+
 
     </tr>
     ))}

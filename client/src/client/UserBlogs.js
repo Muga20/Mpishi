@@ -40,8 +40,6 @@ const currentPosts = blogs.slice(indexOfFirstPost, indexOfLastPost);
       <div id="top_space">
       <div class="wrap">
 
-
-
       <aside class="user-blogs-sidebar">
       <h2>Topics </h2>
       {currentPosts.length>0 && blogs.map(My_blog => (

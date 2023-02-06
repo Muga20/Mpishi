@@ -3,24 +3,34 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Footer from "../Views/Footer";
 import Navbar from "../Views/Navbar";
-import '../resources/css/styles.css'
+
+import '../resources/css/recipemenu.css'
 import SubFooter from "../Views/SubFooter";
 import RecipePagination from "../pagination/Pagination";
+import { UseAuthContext } from "../hooks/UseAuthContext";
 
 
 
 function ListRecipe() {
-   
+    const { user } = UseAuthContext();
     const [recipe, setRecipe] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(9);
     const paginate = pageNumber => setCurrentPage(pageNumber);
+    const [email, setEmail] = useState("");
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPosts = recipe.slice(indexOfFirstPost, indexOfLastPost);
 
-    
+
+    useEffect(() => {
+      const fetchData = async () => {
+      const { email } = JSON.parse(localStorage.getItem("user"));
+      setEmail(email );
+      };
+      fetchData();
+      }, []);
 
     useEffect(() => {
       getRecipe();
@@ -28,7 +38,8 @@ function ListRecipe() {
   
     const getRecipe = async () => {
       const res = await axios.get("http://localhost:5000/recipe");
-      setRecipe(res.data);
+      const shuffledData = res.data.sort(() => 0.5 - Math.random());
+      setRecipe(shuffledData);
  
     };
     
@@ -36,30 +47,30 @@ function ListRecipe() {
     <div>
       <Navbar />
       <div className="Top_padding" >
-        <section className="menu  " id="menu">
+        <div className="recipe-read-menu">
           
         <h1 className="heading"> Recipes </h1>
 
-          <h1 className="heading">  </h1>
 
-          <div className="box-container">
+          <div className="recipe-read-box-container">
             {currentPosts.map((recipe, id) => (
-              <div className="box" key={recipe.id}>
-                <div className="image">
-                  <img src={`http://localhost:5000/${recipe.image}`} alt="" />
+              <div className="recipe-read-box" key={recipe.id}>
+
+                 <div className="recipe-read-image">
+                  <img className="recipe-read-image" src={`http://localhost:5000/${recipe.image}`} alt="" />
                  
                 </div>
-                <div className="content">
-              
-                  <h3>{recipe.name}</h3>
-
+                <div className="recipe-content">   
+                {user && (
                   <Link
-                    className="btn"
+                    className="recipe-read-link"
                     to={`/read_recipe/${recipe.id}`}
-                    onClick={() => localStorage.setItem(recipe._id)}
+                    onClick={() => localStorage.setRecipe(recipe._id)}
                   >
-                    View Recipe
+                    <span className="name-span">{recipe.name}</span>
                   </Link>
+                )}
+                
                 </div>
               </div>
             ))}
@@ -67,7 +78,7 @@ function ListRecipe() {
 
           <RecipePagination postsPerPage={postsPerPage} totalPosts={recipe.length} paginate={paginate} currentPage={currentPage} />
 
-        </section>
+        </div>
         </div>
 
      {/** Sub Footer is added here */}

@@ -35,6 +35,10 @@ const Recipe = db.define(
     serves :{
         type: DataTypes.STRING
     },
+    instructions:{
+        type: DataTypes.TEXT
+    },
+    
   
 },{
     freezeTableName: true

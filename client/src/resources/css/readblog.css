@@ -7,7 +7,7 @@ body { margin:0px; padding:0px; }
     z-index: 10;
 }
 .header-banner {
-    background-color: #333;
+
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -18,6 +18,13 @@ body { margin:0px; padding:0px; }
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+.read-blog-h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 20% 0 0;
+
 }
 
 .user-blog-header h1 {
@@ -97,20 +104,24 @@ article p:first-of-type {
 }
 .user-blog-aside {
     float: right;
-    width: 120px;
+    width: 550px;
     padding-right: 2rem;
 }
+
 .user-blog-aside img{
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    padding-right: 5rem;
+    width: 430px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 5px;
 }
 p img {
     max-width: 100%;
 }
 .user-bog-content{
     padding-top: 3rem;
-    padding-left: 10rem;
+
+    display: flex;
 }
 
 .user-bog-nav ul li small {

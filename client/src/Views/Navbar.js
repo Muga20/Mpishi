@@ -60,15 +60,17 @@ export default function Navbar() {
           <Link className="a active" to="/">
             Home
           </Link>
-          {user && user.role && (
-            <Link className="a" to="/recipe_data">
-              Admin
-            </Link>
-          )}
-
+        
           {user && (
             <Link className="a" to="/recipes">
               Recipes
+            </Link>
+          )}
+
+
+          {user && (
+            <Link className="a" to="/list-category">
+              Categories
             </Link>
           )}
 
@@ -99,6 +101,14 @@ export default function Navbar() {
                </Link>
                </li>
               )}
+              {user && user.role && (
+                <li className="drop-down-li">
+                <Link className="x" to="/recipe_data">
+                  Admin
+                </Link>
+                </li>
+              )}
+    
                {user && email && (
                 <li className="drop-down-li">
                 <Link className="x" to="/about-user">
@@ -119,6 +129,7 @@ export default function Navbar() {
                   Contact
                   </Link>
                   </li>
+                
                   <li className="drop-down-li">
                   {user && (
                     <Link className="x" type="submit" onClick={handleClick}>

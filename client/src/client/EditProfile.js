@@ -47,7 +47,7 @@ function EditProfile() {
 
 
       //navigate("/user-profile");
-      return toast.success("Updated Profile");
+      return toast.success("Updated Profile Successfully , Image will be updated after refresh ");
      
 
     } catch (error) {

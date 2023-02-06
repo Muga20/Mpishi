@@ -19,6 +19,7 @@ function EditRecipe() {
   const [member_id, setMemberId] = useState("");
   const [cook_time, setCook_time] = useState('')
   const [about_the_recipe, setAbout_the_recipe] = useState('')
+  const [instructions, setInstructions] = useState('')
   const [serves, setServes] = useState('')
   const inputRef = useRef(null); 
   const [categories, setCategories] = useState([])
@@ -38,6 +39,7 @@ function EditRecipe() {
     // fetch the categories from an API or a database
     axios.get('http://localhost:5000/category')
     .then(response => {
+        
         setCategories(response.data);
     })
     .catch(error => {
@@ -56,6 +58,8 @@ function EditRecipe() {
 
   const getRecipeById = async () => {
       const response = await axios.get(`http://localhost:5000/recipe/${id}`);
+
+      console.log(response.data);
       setName(response.data.name);
       setCategory(response.data.category);
       setImage(response.data.image);
@@ -64,6 +68,8 @@ function EditRecipe() {
       setCook_time(response.data.cook_time);
       setAbout_the_recipe(response.data.about_the_recipe);
       setServes(response.data.serves);
+      setInstructions(response.data.instructions);
+
   
   }
 
@@ -147,16 +153,17 @@ function EditRecipe() {
 
 
                 <br />
-                <textarea 
-                  rows="4" 
-                  cols="76" 
-                  type="text"
-                  className="user-inputs"
-                  placeholder="Steps"
-                  value={steps}
-                  onChange={(e) => setSteps(e.target.value)}
-                />
-                <br />
+            
+                <textarea
+                rows="4" 
+                cols="76" 
+                type="text"
+                className="user-inputs"
+                placeholder="instructions"
+                value={instructions}
+                onChange={(e) => setInstructions(e.target.value)}
+              />
+              <br />
                 <input
                   type="text"
                   className="user-inputs"

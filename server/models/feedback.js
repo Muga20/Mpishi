@@ -3,6 +3,7 @@ import  Sequelize  from "sequelize";
 import db from "../config/config.js";
 import Members from "./members.js";
 const { DataTypes } = Sequelize;
+import Response from "./response.js";
  
 const FeedBack = db.define(
     'feedback',{
@@ -25,6 +26,24 @@ const FeedBack = db.define(
 FeedBack .belongsTo(Members,{
     foreignKey:'member_id'
 });
+
+Members.hasMany(FeedBack,{
+    foreignKey:'member_id'
+});
+
+FeedBack.hasMany(Response,{
+    foreignKey:'feedback_id'
+});
+
+Response.belongsTo(FeedBack,{
+    foreignKey:'feedback_id'
+});
+
+
+
+
+
+
 
 
 db.sync()

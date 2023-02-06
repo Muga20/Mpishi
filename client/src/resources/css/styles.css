@@ -31,12 +31,10 @@
    
 }
 
-
-.rating-star{
-    color:var( --green);
-    font-size: 1.5rem;
-    margin-right: 0.5rem;
+.about-image-display{
+    border-radius: 5px;
 }
+
 
 html{
     font-size: 62.5%;
@@ -48,62 +46,6 @@ html{
 section{
     padding:2rem 9%;
 }
-
-section:nth-child(even){
-    background:#1C2833;
-}
-.search-div{
-  
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 2rem;
-}
-.SearchButton{
-    background-color:rgb(237, 244, 252);
-    color:rgb(15, 14, 14);
-    border-radius: 5px;
-    border: 1px solid white;
-    padding: 5px;
-    width: 300px;
-    height: 50px;
-  
-  
-}
-
-.serach_list{
-    background-color:rgb(237, 244, 252);
-    color:white;
-    border-radius: 5px;
-    border: 1px solid white;
-    padding: 5px;
-    margin-left: 12px;
-    width: 30%;
-    
-}
-.sujested_serches{
-   
-    color:white;
-    border-radius: 5px;
-    border: 1px solid white;
-    padding: 5px;
-    margin-left: 10%;
-    
-}
-.flex_search{
-    display: flex;
-    margin-left: 36%;
-
-}
-.recipe_span{
-    font-size: 15px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-.sujested{
-color: #fff;
-font-size: 22px;
-}
-
 
 .sub-heading{
     text-align: center;
@@ -155,15 +97,14 @@ font-size: 22px;
     color:var(--white);
 }
 
-
-
-
-
-.users_email{
-    font-size: 20px;
-    color:black;
+.home{
+        background: url(../images/smoothie-1704229_1920.jpg) center;
+        width: auto;
+        height: 100vh;
+        background-size: cover;
+        background-repeat: no-repeat;
    
-  }
+}
 
 
 .home .home-slider .slide{
@@ -192,7 +133,7 @@ font-size: 22px;
 } */
 
 .home .home-slider .slide .content h3{
-    color:rgb(247, 174, 106);
+    color:#d3c5c9;
     font-size: 7rem;
 }
 
@@ -348,88 +289,6 @@ font-size: 22px;
 .recipe_main{
     display: block;
 }
-.menu{
-    background-color: rgb(30, 37, 44);
-}
-.menu .box-container{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-    gap:1.5rem;
-   
-}
-
-.menu .box-container .box{
-    background: #151c24;
-    border:.1rem solid rgba(0,0,0,.2);
-    border-radius: .5rem;
-    box-shadow: var(--box-shadow);    
-}
-
-.menu .box-container .box .image{
-    height: 25rem;
-    width: 100%;
-    padding:1.5rem;
-    overflow: hidden;
-    position: relative;
-}
-
-.menu .box-container .box .image img{
-    height: 100%;
-    width: 100%;
-    border-radius: .5rem;
-    object-fit: cover;
-}
-
-.menu .box-container .box .image .fa-heart{
-    position: absolute;
-    top:2.5rem; right: 2.5rem;
-    height: 5rem;
-    width: 5rem;
-    line-height: 5rem;
-    text-align: center;
-    font-size: 2rem;
-    background: #fff;
-    border-radius: 50%;
-    color:var(--black);
-}
-
-.menu .box-container .box .image .fa-heart:hover{
-    background-color: var(--green);
-    color:#fff;
-}
-
-.menu .box-container .box .content{
-    padding:2rem;
-    padding-top: 0;
-}
-
-.menu .box-container .box .content .stars{
-    padding-bottom: 1rem;
-}
-
-.menu .box-container .box .content .stars i{
-   font-size: 1.7rem;
-   color:var(--green);
-}
-
-.menu .box-container .box .content h3{
-    color:var(--black);
-    font-size: 2.5rem;
-}
-
-.menu .box-container .box .content p{
-    color:var(--light-color);
-    font-size: 1.6rem;
-    padding:.5rem 0;
-    line-height: 1.5;
-}
-
-.menu .box-container .box .content .price{
-    color:var(--green);
-    margin-left: 1rem;
-    font-size: 2.5rem;
-}
-
 
 .order form{
     max-width:90rem;

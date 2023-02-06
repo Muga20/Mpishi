@@ -1,5 +1,5 @@
 import React from 'react'
-import image from "../resources/images/about-img.png";
+import image from "../resources/images/food-1438479_1920.jpg";
 import "../resources/css/styles.css";
 import { Link } from 'react-router-dom';
 
@@ -16,7 +16,7 @@ function About() {
     <div class="row">
 
         <div class="image">
-            <img src={image} alt=""/>
+            <img className='about-image-display' src={image} alt=""/>
         </div>
 
         <div class="content">

@@ -59,8 +59,8 @@ function AddBlog() {
   return (
     <div>
     <Navbar />
-    <div id="top_space">
-      <div className=".user-info-body">
+    <div id="top_space2">
+      <div className="user-info-body">
         <form method="post" onSubmit={createBlogs}>
           <div className="user-container-div-2">
             <div className="About">
@@ -98,7 +98,7 @@ function AddBlog() {
               <br/>
 
               </ul>
-           
+              <h3>Please consider uploading a quality picture</h3>
               <ul>
                 <h3>Image</h3>
                 <input
@@ -108,6 +108,7 @@ function AddBlog() {
                 />
               </ul>
               <ul>
+             
                 <button className="button-add-recipe" type="submit">
                    PostBlog
                 </button>
