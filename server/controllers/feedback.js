@@ -89,31 +89,6 @@ export const createResponse = async (req, res) => {
     }
 }
 
-export const getAdminResponseById = async (req, res) => {
-    try {
-        const { id } = req.params;
-
-        const response = await Response.findOne({
-            include: [{
-                model: FeedBack,
-                as: 'feedback',
-                required: false,
-            }],
-            where: {
-                id,
-             
-            }
-        });
-
-        if (!response) {
-            return res.status(404).json({ error: "Response not found" });
-        }
-
-        res.json(response);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-};
 
 
 

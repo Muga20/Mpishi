@@ -68,7 +68,7 @@ const Modal = ({ closeModal, children }) => {
           </div>
         ) : (
           <div className="suggested-searches">
-            <span className="suggested">Type Something </span>
+            <span className="suggested">Type the meal your looking for </span>
           </div>
         )}
       </div>

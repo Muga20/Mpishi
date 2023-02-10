@@ -20,6 +20,7 @@ function ReadBog() {
     const fetchBlog = async () => {
         try {
             const res = await axios.get(`http://localhost:5000/blogs/${id}`);
+            console.log(res.data);
             setBlogs(res.data);
         } catch (err) {
             console.error(err);
@@ -30,13 +31,13 @@ function ReadBog() {
 
 
 
-const openComment = () => {
-  setShowComment(true);
-}
+// const openComment = () => {
+//   setShowComment(true);
+// }
 
-const closeComment = () => {
-  setShowComment(false);
-}
+// const closeComment = () => {
+//   setShowComment(false);
+// }
 
 
   return (
@@ -53,14 +54,17 @@ const closeComment = () => {
     <div class="clear"></div>
     <nav className='user-bog-nav'>
     
-       <div className='user-blog-nav-left'>
-        <button  className='user-blog-nav-left-button' onClick={openComment}><FaRegCommentAlt/></button>
+     {/**  
+         <div className='user-blog-nav-left'>
+         <button  className='user-blog-nav-left-button' onClick={openComment}><FaRegCommentAlt/></button>
          {showComment && <Comments closeComment={closeComment}></Comments>}
-       </div>
+         </div>
 
-       <div className='user-blog-nav-right'>
-        <button  className='user-blog-nav-right-button'><AiOutlineHeart className='heart'/></button>
-        </div>
+         <div className='user-blog-nav-right'>
+         <button  className='user-blog-nav-right-button'><AiOutlineHeart className='heart'/></button>
+         </div>
+    */}
+     
 
 
         <ul>
@@ -105,6 +109,8 @@ const closeComment = () => {
         {blogs.blog_text}
         </p>
     </article>
+  
+ 
         
     <aside className='user-blog-aside'>
         

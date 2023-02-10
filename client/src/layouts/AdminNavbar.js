@@ -1,11 +1,10 @@
 import "../resources/css/styles.css";
-import React, { useState  ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { UseAuthContext } from "../hooks/UseAuthContext";
 import { useNavigate } from "react-router-dom";
 import "./admin.css";
 import Modal from "../Views/Modal";
-
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -15,7 +14,6 @@ export default function Navbar() {
   const [email, setEmail] = useState("");
   const [open, setOpen] = useState(false);
 
-
   const logout = () => {
     localStorage.removeItem("user");
     dispatch({ type: "LOGOUT" });
@@ -23,12 +21,11 @@ export default function Navbar() {
 
   useEffect(() => {
     const fetchData = async () => {
-    const { email } = JSON.parse(localStorage.getItem("user"));
-    setEmail(email );
+      const { email } = JSON.parse(localStorage.getItem("user"));
+      setEmail(email);
     };
     fetchData();
-    }, []);
-
+  }, []);
 
   const handleClick = () => {
     logout();
@@ -43,7 +40,6 @@ export default function Navbar() {
     setShowModal(false);
   };
 
-
   return (
     <div className="Top_padding">
       <header className="main_header-admin">
@@ -52,24 +48,24 @@ export default function Navbar() {
         </Link>
 
         <nav className="main-navbar">
+          <Link className="a" onClick={() => window.history.back()}>
+            Go Back
+          </Link>
 
-        <Link className="a" onClick={() => window.history.back()}>
-        Go Back
-      </Link>
+          <Link className="a" to="/recipe_data">
+            Recipes
+          </Link>
+
+          <Link className="a" to="/category-list">
+            Categories
+          </Link>
+           {/** 
+             <Link className="a" to="/comments">
+             Comments
+             </Link>        
+          */}
          
-            <Link className="a" to="/recipe_data">
-              Recipes
-            </Link>
-       
-            <Link className="a" to='/category-list'>
-              Categories
-            </Link>
-        
-        
-            <Link className="a" to="/comments">
-              Comments
-            </Link>
-         
+
           {user && (
             <div>
               <Link className="a" onClick={openModal}>
@@ -79,52 +75,53 @@ export default function Navbar() {
             </div>
           )}
 
-      <div>
-      <button className="select-btn" onClick={() => setOpen(!open)}>More Options</button>
-      {open && (
-        <ul className="drop-down-list">
-          <li className="drop-down-li">
-          <Link className="x" to='/'>
-            Home
-           </Link>
-           </li>
-           <li className="drop-down-li">
-           <Link className="x" to='/blog-data'>
-              Blogs
-            </Link>
-            </li>
-            <li className="drop-down-li">
-            <Link className="x" to='/notification'>
-               Notifications
-             </Link>
-             </li>
-            <li className="drop-down-li">
-            <Link className="x" to="/reviews">
-            Reviews
-            </Link>
-             </li>
-             <li className="drop-down-li">
-             <Link className="x" to='/add_recipe'>
-               Create a Recipe
-              </Link>
-              </li>
-             <li className="drop-down-li">
-             <Link className="x" to='/create_category'>
-               Create a Category
-              </Link>
-              </li>
-             
-              <li className="drop-down-li">
-              {user && (
-                <Link className="x" type="submit" onClick={handleClick}>
-                  LogOut
-                </Link>
-              )}
-               </li>
-        </ul>
-      )}
-    </div>
+          <div>
+            <button className="select-btn" onClick={() => setOpen(!open)}>
+              More Options
+            </button>
+            {open && (
+              <ul className="drop-down-list">
+                <li className="drop-down-li">
+                  <Link className="x" to="/">
+                    Home
+                  </Link>
+                </li>
+                <li className="drop-down-li">
+                  <Link className="x" to="/blog-data">
+                    Blogs
+                  </Link>
+                </li>
+                <li className="drop-down-li">
+                  <Link className="x" to="/notification">
+                    Notifications
+                  </Link>
+                </li>
+                <li className="drop-down-li">
+                  <Link className="x" to="/reviews">
+                    Reviews
+                  </Link>
+                </li>
+                <li className="drop-down-li">
+                  <Link className="x" to="/add_recipe">
+                    Create a Recipe
+                  </Link>
+                </li>
+                <li className="drop-down-li">
+                  <Link className="x" to="/create_category">
+                    Create a Category
+                  </Link>
+                </li>
 
+                <li className="drop-down-li">
+                  {user && (
+                    <Link className="x" type="submit" onClick={handleClick}>
+                      LogOut
+                    </Link>
+                  )}
+                </li>
+              </ul>
+            )}
+          </div>
         </nav>
 
         <div className="icons">
@@ -135,28 +132,27 @@ export default function Navbar() {
               </div>
 
               <div className="dropdown-content">
-              
-              <Link className="b" to="/recipe_data">
-              Recipes
-            </Link>
-       
-            <Link className="b" to='/category-list'>
-              Categories
-            </Link>
-        
-        
-            <Link className="b" to="/comments">
-              Comments
-            </Link>
-         
-          <Link className="b" to="/reviews">
-            Reviews
-          </Link>
+                <Link className="b" to="/recipe_data">
+                  Recipes
+                </Link>
 
-          <Link className="b" to='/blog-data'>
-          Blogs
-           </Link>
-              
+                <Link className="b" to="/category-list">
+                  Categories
+                </Link>
+                 {/**
+                     <Link className="b" to="/comments">
+                  Comments
+                </Link>
+                
+                */}
+           
+                <Link className="b" to="/reviews">
+                  Reviews
+                </Link>
+
+                <Link className="b" to="/blog-data">
+                  Blogs
+                </Link>
               </div>
             </div>
           </nav>
@@ -164,15 +160,11 @@ export default function Navbar() {
           {/**<a href="#" className="fas fa-heart"></a>*/}
 
           <div className="auth-Credentials">
-
-       
-
-            {user &&  email && (
+            {user && email && (
               <Link className="user-names " type="submit" to="/users">
                 <h4> {user.username}</h4>
               </Link>
             )}
-
           </div>
 
           {!user && (
@@ -180,10 +172,8 @@ export default function Navbar() {
               LogIn
             </Link>
           )}
-
         </div>
       </header>
-
     </div>
   );
 }

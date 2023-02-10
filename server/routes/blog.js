@@ -8,7 +8,7 @@ import {
     deleteBlogs,
     createBlogsComment,
     getEachMembersBlogs,
-    getCommentsInBlogs
+ 
     
 } from "../controllers/blog.js";
  
@@ -21,7 +21,7 @@ BlogRoutes.patch('/:id', updateBlogs);
 BlogRoutes.delete('/:id', deleteBlogs);
 BlogRoutes.post('/comment', createBlogsComment);
 BlogRoutes.get('/member/:id', getEachMembersBlogs);
-BlogRoutes.get('/comment/:id', getCommentsInBlogs);
+
 
  
 export default BlogRoutes;

@@ -25,7 +25,6 @@ function ReadRecipe() {
   const [instructions, setInstructions] = useState("");
   const [comments, setComments] = useState([]);
   const [serves, setServes] = useState("");
-  const [errors, setErrors] = useState(false); 
   const [email, setEmail] = useState("");
 
   useEffect(() => {
@@ -101,7 +100,7 @@ function ReadRecipe() {
            
             {email && (
             <div class="comments-container">
-            <h1> Comments on this Recipes  (3)</h1>
+            <h1> Comments on this Recipes</h1>
  
                {comments.map((comment, id) => (
             <ul id="comments-list" class="comments-list" key={comment.id}>

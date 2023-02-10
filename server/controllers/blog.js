@@ -20,7 +20,7 @@ export const getEachMembersBlogs = async (req, res) => {
     const listAllBlogs = await Blogs.findAll({
       include: [
         {
-          model: Members,
+          model: Members,BlogsComment,
           where: { id: userId },
         },
        
@@ -39,37 +39,7 @@ export const getBlogsById = async (req, res) => {
       where: {
         id: req.params.id,
       },
-      include: [
-        {
-          model: Members,
-          attributes: [ 
-            "id",
-            "first_name",
-            "last_name",
-            "email",
-          ],
-        },
-      ],
-    });
-
-    res.json(getAllById[0]);
-  } catch (error) {
-    res.json({ message: error.message });
-  }
-};
-
-export const getCommentsInBlogs = async (req, res) => {
-  try {
-    // Get blog by id
-    const getAllById = await BlogsComment.findAll({
-      where: {
-        id: req.params.id,
-      },
-      include: [
-        {
-          model: Blogs,
-        },
-      ],
+      include: Members , BlogsComment,
     });
 
     res.json(getAllById[0]);

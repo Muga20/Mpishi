@@ -57,14 +57,10 @@ export default function Navbar() {
           <Link className="a" to="/user-blogs">
             Blogs
           </Link>
-        
-          
-            <Link className="a" to="/recipes">
-              Recipes
-            </Link>
-       
-            
 
+          <Link className="a" to="/recipes">
+            Recipes
+          </Link>
 
           <Link className="a" to="/display-blogs">
             MyPost's
@@ -90,17 +86,12 @@ export default function Navbar() {
                     Home
                   </Link>
                 </li>
-            
+
                 <li className="drop-down-li">
-                  <Link className="x" to="/response">
-                    Notification
+                  <Link className="x" to="/about-user">
+                    About
                   </Link>
                 </li>
-                <li className="drop-down-li">
-                <Link className="x" to="/about-user">
-                  About
-                </Link>
-              </li>
 
                 <li className="drop-down-li">
                   <Link className="x" to="/add-blog">
@@ -113,10 +104,10 @@ export default function Navbar() {
                   </Link>
                 </li>
                 <li className="drop-down-li">
-                <Link className="x" to="/help-center">
-                  Help Center
-                </Link>
-              </li>
+                  <Link className="x" to="/help-center">
+                    Help Center
+                  </Link>
+                </li>
 
                 <li className="drop-down-li">
                   {user && (

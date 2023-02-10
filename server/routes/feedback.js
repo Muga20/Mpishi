@@ -10,7 +10,6 @@ import {
       getFeedBackById,
       createFeedBack,
       deleteFeedBack,
-      getAdminResponseById,
       createResponse
 } from "../controllers/feedback.js";
 
@@ -23,7 +22,7 @@ ContactRoutes .get('/:id', getFeedBackById);
 ContactRoutes .post('/help/', upload,createFeedBack);
 ContactRoutes .delete('/:id', deleteFeedBack);
 ContactRoutes .post('/response/', createResponse);
-ContactRoutes .get('/response/:id', getAdminResponseById);
+
 
 
 

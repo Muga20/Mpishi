@@ -37,7 +37,6 @@ import WriteComment from './client/WriteComment';
 import DisplayBlogs from './client/DisplayBlogs';
 import HelpCenter from './client/HelpCenter';
 import Notification from './client/Notification';
-import Response from './client/Response';
 import Reply from './Admin/Reply';
 import ListCategory from './Admin/ListCategory';
 import ShowCategory from './Admin/ShowCategory';
@@ -121,7 +120,6 @@ import ShowCategory from './Admin/ShowCategory';
 
       {/** Notification Routes  */}
       <Route path='/notification' element={ user ?  <Notification/> :<Navigate to="/login" /> }/>
-      <Route path='/response' element={  user ? <Response/> :<Navigate to="/login" />}/>
       <Route path='/reply/:id' element={ user ?  <Reply/> :<Navigate to="/login" />}/>
 
       </Routes>

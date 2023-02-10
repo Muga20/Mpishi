@@ -34,6 +34,11 @@ Members.hasMany(BlogsComment, {
   foreignKey: 'blog_id',
 });
 
+Blogs .hasMany(BlogsComment, {
+  foreignKey: 'blog_id',
+});
+
+
 db.sync().then(() => {
     console.log(' BlogsComment table created');
   });
