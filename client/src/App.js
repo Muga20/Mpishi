@@ -107,7 +107,7 @@ import ShowCategory from './Admin/ShowCategory';
       {/** Blogs Routes  */}
 
       <Route path='/blog' element={ user ?  <Blog/> :<Navigate to="/login" />  }/>
-      <Route path='/add-blog' element={ user ?  <AddBlog />  :<Navigate to="/login" /> }/>
+      <Route path='/add-blog' element={ <AddBlog /> }/>
       <Route path='/blog-data' element={user ?   <BlogData/> :<Navigate to="/login" />  }/>
       <Route path='/read-blog/:id' element={ user ?  <ReadBlog/> :<Navigate to="/login" />  }/>
       <Route path='/display-blogs' element={ user ?  <DisplayBlogs/> :<Navigate to="/login" /> }/>

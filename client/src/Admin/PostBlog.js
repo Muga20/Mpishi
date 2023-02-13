@@ -49,9 +49,9 @@ function PostBlog() {
 
        
         try {
-            await axios.post('http://localhost:5000/blogs', formData,)
+            //await axios.post('http://localhost:5000/blogs', formData,)
              
-            navigate('/blog-data')
+            //navigate('/blog-data')
            
         } catch (error) {
             console.log(error)
