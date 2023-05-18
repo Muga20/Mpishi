@@ -56,6 +56,7 @@ export const getMembersById = async (req, res) => {
   }
 };
 
+
 export const createMembers = async (req, res) => {
   try {
     const { username, password, role } = req.body;
@@ -65,13 +66,13 @@ export const createMembers = async (req, res) => {
     });
 
     if (existingUser) {
-      return res.status(400).send({ message: "Username already exists" });
+      return res.status(400).json({ message: "Username already exists" });
     }
 
-    if (password.length < 5) {
-      return res.status(400).send({ message: "Password must be at least 5 characters long" });
+    if (password.length <= 5) {
+      return res.status(400).json({ message: "Password must be at least 6 characters long" });
     }
-
+    
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, salt);
 
@@ -80,14 +81,16 @@ export const createMembers = async (req, res) => {
       password: hash,
       role,
     });
+    
     const token = createToken(member.id);
-    res.status(200).send({
+    
+    return res.status(200).json({
       username: member.username,
       token,
-      message: "User Successfully created",
+      message: "User successfully created",
     });
   } catch (error) {
-    res.status(400).send({ message: error.message });
+    return res.status(400).json({ message: error.message });
   }
 };
 

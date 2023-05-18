@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"; //import useNavigate
 import axios from "axios";
 import "../resources/css/recipe.css";
 import Navbar from "../layouts/AdminNavbar";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function AddRecipe() {

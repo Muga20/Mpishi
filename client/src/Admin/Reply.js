@@ -3,7 +3,7 @@ import "../resources/css/userdata.css";
 import Navbar from '../layouts/AdminNavbar'
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Pagination from "../pagination/Pagination";
+// import Pagination from "../pagination/Pagination";
 import { useNavigate, useParams } from "react-router-dom";
 
 function Reply() {

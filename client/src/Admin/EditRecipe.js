@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import axios from "axios";
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import '../resources/css/profile.css';
 import Navbar from "../layouts/AdminNavbar";
 import { useParams } from 'react-router-dom';

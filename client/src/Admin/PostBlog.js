@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom';  //import useNavigate
-import axios from 'axios';
+// import { useNavigate } from 'react-router-dom';  //import useNavigate
+// import axios from 'axios';
 import "../resources/css/recipe.css";
 import '../resources/css/navbar.css'
 import Navbar from "../layouts/AdminNavbar";
@@ -19,7 +19,7 @@ function PostBlog() {
     const [image , setImage] = useState('')
     const [user_id , setUserId] = useState('')
     
-    const navigate = useNavigate(); //initialize useNavigate
+    // const navigate = useNavigate(); //initialize useNavigate
     const inputRef = useRef(null);  //initialize useRef
 
 

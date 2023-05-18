@@ -24,11 +24,18 @@ export default function Navbar() {
 
   useEffect(() => {
     const fetchData = async () => {
-    const { email } = JSON.parse(localStorage.getItem("user"));
-    setEmail(email );
+      const userData = localStorage.getItem("user");
+      if (userData) {
+        const { email } = JSON.parse(userData);
+        if (email) {
+          setEmail(email);
+        }
+      }
     };
+  
     fetchData();
-    }, []);
+  }, []);
+  
 
 
   const handleClick = () => {

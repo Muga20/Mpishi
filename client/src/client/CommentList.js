@@ -3,7 +3,7 @@ import '../resources/css/blogscomments.css';
 import axios from 'axios';
 import '../resources/css/userblog.css';
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+// import { Link, useParams } from "react-router-dom";
 
 function CommentList() {
   const [memberId, setMemberId] = useState("");
