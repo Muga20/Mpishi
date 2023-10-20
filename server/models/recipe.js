@@ -1,55 +1,50 @@
-import  Sequelize from "sequelize";
+import Sequelize from "sequelize";
 import db from "../config/config.js";
 import Members from "./members.js";
 
- 
 const { DataTypes } = Sequelize;
 
- 
 const Recipe = db.define(
-    'recipes',{
-    name:{
-        type: DataTypes.STRING
-    }, 
-    cat_id:{
-        type: DataTypes.INTEGER
+  "recipes",
+  {
+    name: {
+      type: DataTypes.STRING,
     },
-    member_id:{
-        type: DataTypes.INTEGER
+    cat_id: {
+      type: DataTypes.INTEGER,
     },
-    image:{
-        type: DataTypes.STRING
+    member_id: {
+      type: DataTypes.INTEGER,
     },
-    ingredients:{
-        type: DataTypes.TEXT
+    image: {
+      type: DataTypes.STRING,
     },
-    steps:{
-        type: DataTypes.TEXT
+    ingredients: {
+      type: DataTypes.TEXT,
     },
-    cook_time:{
-        type: DataTypes.STRING
+    steps: {
+      type: DataTypes.TEXT,
     },
-    about_the_recipe:{
-        type: DataTypes.TEXT
+    cook_time: {
+      type: DataTypes.STRING,
     },
-    serves :{
-        type: DataTypes.STRING
+    about_the_recipe: {
+      type: DataTypes.TEXT,
     },
-    instructions:{
-        type: DataTypes.TEXT
+    serves: {
+      type: DataTypes.STRING,
     },
-    
-  
-},{
-    freezeTableName: true
-});
+    instructions: {
+      type: DataTypes.TEXT,
+    },
+  },
+  {
+    freezeTableName: true,
+  }
+);
 
- Recipe.belongsTo(Members,{foreignKey:'member_id'});
+Recipe.belongsTo(Members, { foreignKey: "member_id" });
 
-
-db.sync()
-
+//db.sync()
 
 export default Recipe;
-
-

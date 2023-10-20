@@ -1,6 +1,6 @@
 
 import express from "express"; 
-import upload from "../middleware/imageupload.js";
+import upload from "../middleware/imageUpload.js";
 import { 
    sendEmail,
 } from "../controllers/contact.js";

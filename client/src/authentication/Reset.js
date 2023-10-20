@@ -13,7 +13,7 @@ function Reset() {
   const ResetPassword = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/members/forgotpassword", {
+      await axios.post("http://localhost:5000/auth/forgotpassword", {
         email,
       });
       toast.success("Check your email for further instructions");

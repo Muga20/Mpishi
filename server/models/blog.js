@@ -36,10 +36,6 @@ Members.hasMany(Blogs, {
   foreignKey: "user_id",
 });
 
-
-
-db.sync().then(() => {
-  console.log("Blog table created");
-});
+//db.sync()
 
 export default Blogs;

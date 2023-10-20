@@ -29,7 +29,7 @@ function Home() {
         const { email } = JSON.parse(userData);
         setEmail(email);
       }
-      
+
       const res = await axios.get("http://localhost:5000/recipe");
       const shuffledData = res.data.sort(() => 0.5 - Math.random());
       setData(shuffledData);
@@ -45,23 +45,34 @@ function Home() {
     <div>
       <Navbar />
 
-      <section className="home" id="home">
-        {/* ... */}
-      </section>
+      <section className="home" id="home"></section>
+
+      <About />
 
       <section className="dishes" id="dishes">
         <h1 className="heading">Recipe</h1>
         <div className="box-container">
           {data.slice(0, 12).map((recipeItem, id) => (
             <div className="image-box" key={id}>
-              {/* ... */}
+              <img
+                src={`http://localhost:5000/${recipeItem.image}`}
+                alt="recipe"
+              />
+              <div className="content">
+                <h3>{recipeItem.title}</h3>
+                <p>{recipeItem.description}</p>
+                <Link to={`/recipe/${recipeItem._id}`} className="btn">
+                  Read More
+                </Link>
+              </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ... */}
+      <Blog />
 
+      <SubFooter />
       <Footer />
     </div>
   );

@@ -1,42 +1,44 @@
-import  express  from "express";
-import  db  from "./config/config.js";
-import  BlogRoutes from "./routes/blog.js";
-import  UsersRoutes  from "./routes/members.js";
-import  RecipeRoutes from "./routes/recipe.js";
-import CategoryRoutes from "./routes/category.js"
-import CommentsRoutes from "./routes/comments.js"
+import express from "express";
+import http from "http"; // Import the http module
+import db from "./config/config.js";
+import BlogRoutes from "./routes/blog.js";
+import UsersRoutes from "./routes/members.js";
+import RecipeRoutes from "./routes/recipe.js";
+import CategoryRoutes from "./routes/category.js";
+import CommentsRoutes from "./routes/comments.js";
 import ContactRoutes from "./routes/feedback.js";
+import AuthRoutes from "./routes/auth.js";
+import cors from 'cors';
+import bodyParser from "body-parser";
 
-
-import cors from 'cors'
-
-// await db.sync()
-
-
+// Create an Express application
 const app = express();
-try {
-  db.authenticate();
-  console.log("Connection has been established successfully.");
-  app.listen(5000, () => console.log('Example app listening on port 5000'));
-} catch (error) {
-   console.log("Unable to connect to the database:");
-}
 
-app.use(express.json());
-app.use('/Images', express.static('./Images'))
+// Provide a default port (e.g., 3000) if EXP_PORT is not defined
+const PORT = process.env.EXP_PORT || 5000;
 
+// Create an HTTP server using the Express app
+const server = http.createServer(app);
 
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
+});
 
-  app.use(cors())
-  app.use('/members', UsersRoutes);
-  app.use('/blogs' , BlogRoutes);
-  app.use('/recipe',RecipeRoutes );
-  app.use('/category' , CategoryRoutes);
-  app.use('/comments' , CommentsRoutes); 
-  app.use('/contact' , ContactRoutes);
+// Test DB connection
+db.authenticate()
+  .then(() => {
+    console.log("Database connection has been established successfully!");
+  })
+  .catch((error) => {
+    console.error("Unable to connect to the database:", error);
+  });
 
-
-
-// app.use("/" ,(req,res) =>{
-//   res.sendFile(__dirname + '/index.ejs')
-// })
+app.use(cors());
+app.use(bodyParser.json());
+app.use('/members', UsersRoutes);
+app.use('/blogs', BlogRoutes);
+app.use('/recipe', RecipeRoutes);
+app.use('/category', CategoryRoutes);
+app.use('/comments', CommentsRoutes);
+app.use('/contact', ContactRoutes);
+app.use('/auth', AuthRoutes);

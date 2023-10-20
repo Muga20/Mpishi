@@ -16,12 +16,15 @@ function Signup() {
   const register = async (e) => {
     e.preventDefault();
     try {
-      const formData = new FormData();
-      formData.append("username", username);
-      formData.append("password", password);
+      const data = {
+        username: username,
+        password: password,
+      };
 
-      await axios.post("http://localhost:5000/members", formData);
+      await axios.post("http://localhost:5000/auth/register", data);
+
       navigate("/login");
+      
     } catch (error) {
       if (error.response?.status === 401) {
         toast.error("Username Already Registered With us ");

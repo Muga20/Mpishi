@@ -19,12 +19,13 @@ function Login() {
   const LoginUser = async (e) => {
     e.preventDefault();
     try {
+      const data = {
+        username: username,
+        password: password,
+      };
       const res = await axios.post(
-        "http://localhost:5000/members/login",
-        {
-          username: username,
-          password: password,
-        },
+        "http://localhost:5000/auth/login",
+        data,
         setHeaders()
       );
 
@@ -51,10 +52,9 @@ function Login() {
 
   return (
     <div>
-    <Navbar />
+      <Navbar />
       <div className="Top_padding">
         <section className="login-container">
-        
           <form onSubmit={LoginUser}>
             <div>
               <center>
@@ -115,7 +115,7 @@ function Login() {
         pauseOnHover
         theme="dark"
       />
-      <Footer/>
+      <Footer />
     </div>
   );
 }

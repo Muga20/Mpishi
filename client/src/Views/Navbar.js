@@ -1,11 +1,13 @@
 import "../resources/css/styles.css";
-import React, { useState  ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { UseAuthContext } from "../hooks/UseAuthContext";
 import { useNavigate } from "react-router-dom";
 import "../resources/css/mainnavbar.css";
 import Modal from "./Modal";
-
+import { getUsersProtectionData } from "../config/CheckProtection";
+import { api } from "../middleware/Api";
+import { accessToken } from "../config/AccessToken";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -14,29 +16,51 @@ export default function Navbar() {
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState("");
   const [open, setOpen] = useState(false);
+  const [userRoles, setUserRoles] = useState([]);
+  const [mustHaveEmail, setMustHaveEmail] = useState(false); // Initialize to false
+  const [users, setUserData] = useState("");
 
+  useEffect(() => {
+    const fetchUserRoles = async () => {
+      const roles = await getUsersProtectionData(); // Assuming getUsersProtectionData fetches user roles
+      setUserRoles(roles);
+    };
 
+    const checkMustHaveEmail = () => {
+      setMustHaveEmail(userRoles.includes("email"));
+    };
+
+    fetchUserRoles();
+    checkMustHaveEmail();
+  }, []);
+
+ 
+  const getUsersData = async () => {
+    try {
+      const token = accessToken();
+
+      const response = await api(
+        `/members/get_single_user/${token}`,
+        "GET",
+        {},
+        {}
+      );
+
+      setUserData(response.user);
+
+    } catch (error) {
+      console.error("Error fetching collections:", error);
+    }
+  };
+
+  useEffect(() => {
+    getUsersData();
+  }, []);
 
   const logout = () => {
     localStorage.removeItem("user");
     dispatch({ type: "LOGOUT" });
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const userData = localStorage.getItem("user");
-      if (userData) {
-        const { email } = JSON.parse(userData);
-        if (email) {
-          setEmail(email);
-        }
-      }
-    };
-  
-    fetchData();
-  }, []);
-  
-
 
   const handleClick = () => {
     logout();
@@ -51,11 +75,6 @@ export default function Navbar() {
     setShowModal(false);
   };
 
- 
-
-
-
-
   return (
     <div className="Top_padding">
       <header className="main_header">
@@ -67,13 +86,12 @@ export default function Navbar() {
           <Link className="a active" to="/">
             Home
           </Link>
-        
+
           {user && (
             <Link className="a" to="/recipes">
               Recipes
             </Link>
           )}
-
 
           {user && (
             <Link className="a" to="/list-category">
@@ -86,7 +104,6 @@ export default function Navbar() {
               Blog
             </Link>
           )}
-         
 
           {user && (
             <div>
@@ -96,68 +113,69 @@ export default function Navbar() {
               {showModal && <Modal closeModal={closeModal}></Modal>}
             </div>
           )}
-      
+
           <div>
-          <button className="select-btn" onClick={() => setOpen(!open)}>More Options</button>
-          {open && (
-            <ul className="drop-down-list">
-            {user &&  email &&(
-              <li className="drop-down-li">
-              <Link className="x" to='/'>
-                Home
-               </Link>
-               </li>
-              )}
-              {user && user.role && (
-                <li className="drop-down-li">
-                <Link className="x" to="/recipe_data">
-                  Admin
-                </Link>
-                </li>
-              )}
-    
-               {user && email && (
-                <li className="drop-down-li">
-                <Link className="x" to="/about-user">
-                About
-                </Link>
-                 </li>
-                )}
-            
-               {user && email && (
+            <button className="select-btn" onClick={() => setOpen(!open)}>
+              More Options
+            </button>
+            {open && (
+              <ul className="drop-down-list">
+                {user && email && (
                   <li className="drop-down-li">
-                  <Link className="x" to={`/edit_profile/${user.id}`}>
-                   Edit Details 
-                   </Link>
-                   </li>
-                  )}
-                  <li className="drop-down-li">
-                  <Link className="x" to="/contact">
-                  Contact
-                  </Link>
+                    <Link className="x" to="/">
+                      Home
+                    </Link>
                   </li>
-                
+                )}
+                {user && user.role && (
                   <li className="drop-down-li">
+                    <Link className="x" to="/recipe_data">
+                      Admin
+                    </Link>
+                  </li>
+                )}
+
+                {user && email && (
+                  <li className="drop-down-li">
+                    <Link className="x" to="/about-user">
+                      About
+                    </Link>
+                  </li>
+                )}
+
+                {user && email && (
+                  <li className="drop-down-li">
+                    <Link className="x" to={`/edit_profile/${user.id}`}>
+                      Edit Details
+                    </Link>
+                  </li>
+                )}
+                <li className="drop-down-li">
+                  <Link className="x" to="/contact">
+                    Contact
+                  </Link>
+                </li>
+
+                <li className="drop-down-li">
                   {user && (
                     <Link className="x" type="submit" onClick={handleClick}>
                       LogOut
                     </Link>
                   )}
-                   </li>
-            </ul>
-          )}
-        </div>
-      
+                </li>
+              </ul>
+            )}
+          </div>
 
-          {user && !email && (
-            <Link className="red-button"
+          {mustHaveEmail && (
+            <Link
+              className="red-button"
               type="submit"
-              to={`/finish_account_setup/${user.id}`}
+              to="/finish_account_setup"
             >
               Finish Setup
-              </Link>
+            </Link>
           )}
-
         </nav>
 
         <div className="icons">
@@ -206,16 +224,11 @@ export default function Navbar() {
           {/**<a href="#" className="fas fa-heart"></a>*/}
 
           <div className="auth-Credentials">
-
-       
-
-            {user &&  email && (
+            {user &&  (
               <Link className="user-names " type="submit" to="/users">
-                <h4> {user.username}</h4>
+                <h4> {users.username}</h4>
               </Link>
             )}
-
-          
           </div>
 
           {!user && (
@@ -223,10 +236,8 @@ export default function Navbar() {
               LogIn
             </Link>
           )}
-
         </div>
       </header>
-
     </div>
   );
 }

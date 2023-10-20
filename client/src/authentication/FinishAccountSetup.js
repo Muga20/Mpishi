@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
-import '../resources/css/userinfo.css'
-
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../Views/Navbar.js";
+import { accessToken } from "../config/AccessToken";
+import { api } from "../middleware/Api";
 
 function FinishAccountSetup() {
   const [first_name, setFirst_name] = useState("");
@@ -14,25 +13,19 @@ function FinishAccountSetup() {
   const [gender, setGender] = useState("");
   const [phone, setPhone] = useState("");
 
-  const { id } = useParams();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      setFirst_name(user.first_name);
-      setLast_name(user.last_name);
-      setEmail(user.email);
-      setPassword(user.password);
-      setGender(user.gender);
-      setPhone(user.phone);
-      setImage(user.image);
-    }
-  }, []);
-
+  const token = accessToken();
 
   const updateMembers = async (e) => {
     e.preventDefault();
+    // Validate data before making the API request
+    if (!token) {
+      // Handle the case when the token is missing or invalid
+      // You can redirect the user to the login page or show an error message
+      return;
+    }
+
     const formData = new FormData();
     formData.append("first_name", first_name);
     formData.append("last_name", last_name);
@@ -42,26 +35,30 @@ function FinishAccountSetup() {
     formData.append("phone", phone);
     formData.append("image", image);
 
-    await axios.patch(`http://localhost:5000/members/update/${id}`, formData );
+    try {
+      const response = await api(
+        `/members/update/${token}`,
+        "PATCH",
+        {},
+        formData
+      );
 
-    const  user = JSON.parse(localStorage.getItem("user"));
-    user.first_name = first_name;
-    user.last_name = last_name;
-    user.email = email;
-    user.gender = gender;
-    user.phone = phone;
-    user.image = image;
-    user.password = password;
-    localStorage.setItem("user", JSON.stringify(user));
+      // Handle the API response as needed
 
-    navigate("/users");
+      // Redirect the user after a successful update
+      navigate("/users");
+    } catch (error) {
+      // Handle errors, e.g., display an error message to the user
+      console.error("Error updating member:", error);
+    }
   };
+
+
   
   return (
     <div>
-    <Navbar />
-    <div className="user-info-background">
-
+      <Navbar />
+      <div className="user-info-background">
         <form method="post" onSubmit={updateMembers}>
           <div className="user-container-div-2">
             <div className="About">
@@ -99,15 +96,16 @@ function FinishAccountSetup() {
 
                 <br />
 
-              
-                <select id="gender" className="gender" 
-                onChange={(e) => setGender(e.target.value)}>
+                <select
+                  id="gender"
+                  className="gender"
+                  onChange={(e) => setGender(e.target.value)}
+                >
                   <option value="">Choose a Gender</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                   <option value="Other">Other</option>
                 </select>
-                
               </ul>
               <ul>
                 <h3>Email</h3>
@@ -138,12 +136,7 @@ function FinishAccountSetup() {
         </form>
       </div>
     </div>
-  
-
   );
 }
 
 export default FinishAccountSetup;
-
-
-
