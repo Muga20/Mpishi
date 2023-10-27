@@ -11,10 +11,10 @@ import {
 
 const RecipeRoutes = express.Router();
 
-RecipeRoutes.get("/", getAllRecipes);
-RecipeRoutes.get("/:id", getRecipesById);
-RecipeRoutes.post("/", upload, createRecipes);
-RecipeRoutes.patch("/:id", upload, updateRecipes);
-RecipeRoutes.delete("/:id", deleteRecipes);
+RecipeRoutes.get("/get_all_recipe", getAllRecipes);
+RecipeRoutes.get("/get_all_recipe_by_id/:id", getRecipesById);
+RecipeRoutes.post("/create_recipe", upload, createRecipes);
+RecipeRoutes.patch("/update_recipe/:id", upload, updateRecipes);
+RecipeRoutes.delete("/delete_recipe/:id", deleteRecipes);
 
 export default RecipeRoutes;
