@@ -88,6 +88,12 @@ export default function Navbar() {
                 </li>
 
                 <li className="drop-down-li">
+                  <Link className="x" to="/recipe_data">
+                    Recipes
+                  </Link>
+                </li>
+
+                <li className="drop-down-li">
                   <Link className="x" to="/about-user">
                     About
                   </Link>
@@ -99,7 +105,7 @@ export default function Navbar() {
                   </Link>
                 </li>
                 <li className="drop-down-li">
-                  <Link className="x" to={`/edit_profile/${user.id}`}>
+                  <Link className="x" to={`/edit_profile`}>
                     Edit Details
                   </Link>
                 </li>

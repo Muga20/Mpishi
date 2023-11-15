@@ -24,7 +24,6 @@ function EditProfile() {
     // Validate data before making the API request
     if (!token) {
       // Handle the case when the token is missing or invalid
-      // You can redirect the user to the login page or show an error message
       return;
     }
 

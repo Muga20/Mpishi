@@ -1,5 +1,6 @@
 import express from "express";
 import upload from "../middleware/imageUpload.js";
+import { verifyToken } from "../middleware/auth.js";
 
 import {
   getAllRecipes,
@@ -13,7 +14,7 @@ const RecipeRoutes = express.Router();
 
 RecipeRoutes.get("/", getAllRecipes);
 RecipeRoutes.get("/:id", getRecipesById);
-RecipeRoutes.post("/", upload, createRecipes);
+RecipeRoutes.post("/", verifyToken, upload, createRecipes);
 RecipeRoutes.patch("/:id", upload, updateRecipes);
 RecipeRoutes.delete("/:id", deleteRecipes);
 
