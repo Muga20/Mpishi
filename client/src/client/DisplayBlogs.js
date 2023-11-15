@@ -19,17 +19,12 @@ function DisplayBlogs() {
     } catch (error) {
       console.log(error);
     }
-
   };
 
-  try {
-    const deleteBlog = async (id) => {
-      const response = await api(`/blogs`, "DELETE", {}, { id });
-      getBlog();
-    };
-  } catch (error) {
-    console.log(error);
-  }
+  const deleteBlog = async (id) => {
+    const response = await api(`/blogs`, "DELETE", {}, { id });
+    getBlog();
+  };
 
   useEffect(() => {
     getBlog();
@@ -43,17 +38,17 @@ function DisplayBlogs() {
           <div class="wrap">
             <aside class="user-blogs-sidebar">
               <h2>Topics </h2>
-              { blogs.map((My_blog) => (
-                  <div class="user-blogs-widget">
-                    <h2> {My_blog.blog_title} </h2>
-                    <Link
-                      to={`/my-blogs/${My_blog.member.id}`}
-                      className="continue-lendo"
-                    >
-                      Read more →
-                    </Link>
-                  </div>
-                ))}
+              {blogs.map((My_blog) => (
+                <div class="user-blogs-widget">
+                  <h2> {My_blog.blog_title} </h2>
+                  <Link
+                    to={`/my-blogs/${My_blog.member.id}`}
+                    className="continue-lendo"
+                  >
+                    Read more →
+                  </Link>
+                </div>
+              ))}
             </aside>
 
             <div class="user-blogs-content-publish">
@@ -64,10 +59,7 @@ function DisplayBlogs() {
                       Auther : {blog.member.first_name}
                     </div>
 
-                    <img
-                      className="post-info-image"
-                      src={`http://localhost:5000/${blog.blog_image}`}
-                    />
+                    <img className="post-info-image" src={blog.blog_image} />
 
                     <h1> {blog.blog_title}</h1>
                     <hr />
@@ -91,9 +83,7 @@ function DisplayBlogs() {
               ))}
             </div>
 
-            <div className="pagination">
-              
-            </div>
+            <div className="pagination"></div>
           </div>
         </div>
       </div>

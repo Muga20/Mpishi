@@ -12,8 +12,7 @@ function Users() {
 
   const getUsersData = async () => {
     try {
-     
-      const token =  accessToken();
+      const token = accessToken();
 
       const response = await api(
         `/members/get_single_user/${token}`,
@@ -40,7 +39,7 @@ function Users() {
           <div class="user-container">
             <div className="user-container-div-1">
               <div class="box">
-                <img src={`http://localhost:5000/${users.image}`} alt=""></img>
+                <img src={users.image} alt=""></img>
 
                 <ul className="unlist">
                   <li>{users.first_name}</li>

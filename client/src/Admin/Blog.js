@@ -23,22 +23,12 @@ function Blog() {
           <div class="blog-container">
             {blogs.slice(0, 3).map((blog) => (
               <div class="blog-card" key={blog.id}>
-
-              <Link to={`/read-blog/${blog.id}`} class="blog-image">
-              <img
-                    src={`http://localhost:5000/${blog.blog_image}`}
-                    alt="image"
-                    class="blog-image"
-                  />
-         
-            </Link>
-               
-                 
+                <Link to={`/read-blog/${blog.id}`} class="blog-image">
+                  <img src={blog.blog_image} alt="image" class="blog-image" />
+                </Link>
 
                 <div class="card__body">
                   <span class="card__body__category">{blog.blog_category}</span>
-
-              
                 </div>
                 <div class="card__footer">
                   <div class="user">
@@ -72,7 +62,6 @@ function Blog() {
                         })()}
                       </small>
                     </div>
-                   
                   </div>
                 </div>
               </div>

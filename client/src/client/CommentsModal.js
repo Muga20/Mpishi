@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import React, { useEffect, useState } from "react";
 import "../resources/css/comments.css";
@@ -39,7 +39,7 @@ function CommentsModal({ closeComment, children }) {
         comment_text: comment_text,
         member_id: member_id,
         blog_id: blog_id,
-        comment_id: comment_id
+        comment_id: comment_id,
       });
       toast.success("Comment created successfully");
       if (data) {
@@ -52,8 +52,6 @@ function CommentsModal({ closeComment, children }) {
       }
     }
   };
-
-
 
   return (
     <div>
@@ -85,27 +83,25 @@ function CommentsModal({ closeComment, children }) {
               placeholder="Enter text to comment"
               value={comment_text}
               onChange={(e) => setCommentText(e.target.value)}
-           
             />
           </div>
 
           <div className="comments-form-control-div-button">
             <button className="comments-form-control-button">Submit</button>
           </div>
-
         </form>
         <ToastContainer
-        position="top-center"
-        autoClose={2200}
-        hideProgressBar={false}
-        newestOnTop
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
+          position="top-center"
+          autoClose={2200}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
       </div>
     </div>
   );

@@ -41,19 +41,17 @@ function WriteComment() {
   return (
     <div>
       <form onSubmit={createComment}>
-          <textarea
-            rows="4"
-            cols="78.5"
-            className="input-for-recipe-Comment"
-            type="text"
-            placeholder="Leave a comment about this recipe here"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-          />
+        <textarea
+          rows="4"
+          cols="78.5"
+          className="input-for-recipe-Comment"
+          type="text"
+          placeholder="Leave a comment about this recipe here"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
 
-     
-            <button className="button-for-recipe-comments">Submit</button>
-        
+        <button className="button-for-recipe-comments">Submit</button>
       </form>
 
       <ToastContainer

@@ -35,38 +35,36 @@ function UserData() {
     <div>
       <Navbar />
 
-      
-        <div class="table-wrapper">
-          <table className="fl-table">
-            <thead>
-              <tr>
-                <th></th>
-                <th>FirstName</th>
-                <th>LastName</th>
-                <th>Email</th>
+      <div class="table-wrapper">
+        <table className="fl-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>FirstName</th>
+              <th>LastName</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentPosts.map((user) => (
+              <tr key={user.id}>
+                <td>{user.id}</td>
+                <td>{user.first_name}</td>
+                <td>{user.last_name}</td>
+                <td>{user.email}</td>
               </tr>
-            </thead>
-            <tbody>
-              {currentPosts.map((user) => (
-                <tr key={user.id}>
-                  <td>{user.id}</td>
-                  <td>{user.first_name}</td>
-                  <td>{user.last_name}</td>
-                  <td>{user.email}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+            ))}
+          </tbody>
+        </table>
 
-          <Pagination
-            postsPerPage={postsPerPage}
-            totalPosts={users.length}
-            paginate={paginate}
-            currentPage={currentPage}
-          />
-        </div>
+        <Pagination
+          postsPerPage={postsPerPage}
+          totalPosts={users.length}
+          paginate={paginate}
+          currentPage={currentPage}
+        />
       </div>
-    
+    </div>
   );
 }
 

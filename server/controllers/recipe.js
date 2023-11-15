@@ -1,6 +1,10 @@
 import Category from "../models/category.js";
 import Recipe from "../models/recipe.js";
 import Comments from "../models/comments.js";
+import dotenv from "dotenv";
+//get config vars
+dotenv.config();
+
 
 export const getAllRecipes = async (req, res) => {
   try {
@@ -37,14 +41,17 @@ export const getRecipesById = async (req, res) => {
   }
 };
 
+const getImageUrl = (req) => {
+  const baseUrl = process.env.BASE_URL; // Replace with your base URL for serving images
+  return `${baseUrl}/${req.file.path}`;
+};
+
 export const createRecipes = async (req, res) => {
   let category;
 
   if (!req.file) {
     return res.status(400).send({ message: "No file was uploaded" });
   }
-
-
 
   try {
     // Check if category already exists
@@ -60,12 +67,13 @@ export const createRecipes = async (req, res) => {
   const accessToken = req.user;
   const user_id = accessToken.userId.id;
 
-  console.log(user_id);
+  // Get the image URL using the uploaded file from the request
+  const image = getImageUrl(req);
 
   let info = {
     name: req.body.name,
     cat_id: category.id,
-    image: req.file.path,
+    image: image,
     ingredients: req.body.ingredients,
     steps: req.body.steps,
     cook_time: req.body.cook_time,

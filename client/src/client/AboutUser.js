@@ -1,5 +1,5 @@
 import "../resources/css/userinfo.css";
-import React, { useState  ,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { UseAuthContext } from "../hooks/UseAuthContext";
 import Navbar from "../layouts/Navbar";
 
@@ -11,28 +11,20 @@ function AboutUser() {
   const [phone, setPhone] = useState("");
   const [gender, setGender] = useState("");
   const [email, setEmail] = useState("");
- 
-
 
   useEffect(() => {
     const fetchData = async () => {
-    const { first_name, 
-      last_name ,
-      username ,
-      email,
-      phone , 
-      gender } = JSON.parse(localStorage.getItem("user"));
-    setFirstName(first_name );
-    setLastName(last_name);
-    setUserName(username);
-    setPhone(phone);
-    setGender(gender)
-    setEmail(email);
-
+      const { first_name, last_name, username, email, phone, gender } =
+        JSON.parse(localStorage.getItem("user"));
+      setFirstName(first_name);
+      setLastName(last_name);
+      setUserName(username);
+      setPhone(phone);
+      setGender(gender);
+      setEmail(email);
     };
     fetchData();
-    }, []);
-
+  }, []);
 
   return (
     <div>
@@ -58,11 +50,9 @@ function AboutUser() {
                 </ul>
 
                 <ul>
-                <h3>Gender</h3>
-                <li>
-                  {gender}
-                </li>
-              </ul>
+                  <h3>Gender</h3>
+                  <li>{gender}</li>
+                </ul>
 
                 <ul>
                   <h3>Contact</h3>
@@ -79,7 +69,6 @@ function AboutUser() {
         </div>
       </div>
     </div>
-  
   );
 }
 

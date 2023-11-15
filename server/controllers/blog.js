@@ -1,11 +1,19 @@
 import Blogs from "../models/blog.js";
 import Members from "../models/members.js";
 import BlogsComment from "../models/blogcomments.js";
+import dotenv from "dotenv";
+//get config vars
+dotenv.config();
+
+const getImageUrl = (req) => {
+  const baseUrl = process.env.BASE_URL; // Replace with your base URL for serving images
+  return `${baseUrl}/${req.file.path}`;
+};
 
 export const getAllBlogs = async (req, res) => {
   try {
-    const listAllBlogs = await Blogs.findAll({ 
-      include: Members ,
+    const listAllBlogs = await Blogs.findAll({
+      include: Members,
       order: [["createdAt", "DESC"]],
     });
     res.json(listAllBlogs);
@@ -22,13 +30,13 @@ export const getEachMembersBlogs = async (req, res) => {
     const listAllBlogs = await Blogs.findAll({
       include: [
         {
-          model: Members,BlogsComment,
+          model: Members,
+          BlogsComment,
           where: { id: user_id },
         },
-       
       ],
     });
-    res.json({listAllBlogs});
+    res.json({ listAllBlogs });
   } catch (error) {
     res.json({ message: error.message });
   }
@@ -41,7 +49,8 @@ export const getBlogsById = async (req, res) => {
       where: {
         id: req.params.id,
       },
-      include: Members , BlogsComment,
+      include: Members,
+      BlogsComment,
     });
 
     res.json(getAllById[0]);
@@ -50,11 +59,9 @@ export const getBlogsById = async (req, res) => {
   }
 };
 
-
 export const createBlogs = async (req, res) => {
-  
   if (!req.file) {
-    return res.status(400).send({ message: 'No file was uploaded' });
+    return res.status(400).send({ message: "No file was uploaded" });
   }
 
   try {
@@ -63,24 +70,27 @@ export const createBlogs = async (req, res) => {
     const accessToken = req.user;
     const user_id = accessToken.userId.id;
 
+    const image = getImageUrl(req);
+
     try {
       const newBlogs = await Blogs.create({
         blog_text: blog_text,
         blog_title: blog_title,
         blog_category: blog_category,
-        blog_image: req.file.path,
+        blog_image: image,
         user_id: user_id,
       });
 
-      res.status(201).send({ message: 'Blog created successfully', data: newBlogs });
+      res
+        .status(201)
+        .send({ message: "Blog created successfully", data: newBlogs });
     } catch (error) {
-      res.status(500).send({ message: 'Failed to create blog', error });
+      res.status(500).send({ message: "Failed to create blog", error });
     }
   } catch (error) {
-    res.status(400).send({ message: 'Invalid input data', error });
+    res.status(400).send({ message: "Invalid input data", error });
   }
 };
-
 
 export const createBlogsComment = async (req, res) => {
   if (!req.body) {

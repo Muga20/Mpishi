@@ -84,7 +84,8 @@ export const deleteMembers = async (req, res) => {
 };
 
 export const updatingMembersDetails = async (req, res) => {
-  const { first_name, last_name, email, phone, gender , password , role } = req.body;
+  const { first_name, last_name, email, phone, gender, password, role } =
+    req.body;
 
   const accessToken = req.user;
   const user_id = accessToken.userId.id;

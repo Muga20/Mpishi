@@ -45,7 +45,24 @@ function Home() {
     <div>
       <Navbar />
 
-      <section className="home" id="home"></section>
+      <section className="home" id="home">
+        <div class="swiper-container home-slider">
+          <div class="swiper-wrapper wrapper">
+            <div class="swiper-slide slide">
+              <div class="content">
+                <h3>Mpishi Recipe</h3>
+                <p>
+                  Mpishi is a recipe website that offers a wide variety of
+                  delicious and easy-to-follow recipes for people of all cooking
+                  abilities. Whether you're a beginner cook or a seasoned pro,
+                  you'll find something to love on our site
+                </p>
+              </div>
+              <div class="image"></div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <About />
 
@@ -54,14 +71,11 @@ function Home() {
         <div className="box-container">
           {data.slice(0, 12).map((recipeItem, id) => (
             <div className="image-box" key={id}>
-              <img
-                src={`http://localhost:5000/${recipeItem.image}`}
-                alt="recipe"
-              />
+              <img src={recipeItem.image} alt="recipe" />
               <div className="content">
                 <h3>{recipeItem.title}</h3>
                 <p>{recipeItem.description}</p>
-                <Link to={`/recipe/${recipeItem._id}`} className="btn">
+                <Link to={`/read_recipe/${recipeItem.id}`} className="btn">
                   Read More
                 </Link>
               </div>
