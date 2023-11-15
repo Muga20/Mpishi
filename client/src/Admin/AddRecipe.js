@@ -5,6 +5,7 @@ import "../resources/css/recipe.css";
 import Navbar from "../layouts/AdminNavbar";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { api } from "../middleware/Api";
 
 function AddRecipe() {
   const [name, setName] = useState("");
@@ -12,7 +13,6 @@ function AddRecipe() {
   const [image, setImage] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [steps, setSteps] = useState("");
-  const [member_id, setMemberId] = useState("");
   const [cook_time, setCook_time] = useState("");
   const [about_the_recipe, setAbout_the_recipe] = useState("");
   const [instructions, setInstructions] = useState("");
@@ -22,15 +22,9 @@ function AddRecipe() {
   const [categories, setCategories] = useState([]); //initialize useRef
 
   //initialize useState
-
   function handleClick() {
     console.log(inputRef.current.value); //get value from inputRef
   }
-
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) setMemberId(user.id);
-  }, []);
 
   useEffect(() => {
     // fetch the categories from an API or a database
@@ -45,35 +39,33 @@ function AddRecipe() {
   }, []);
 
   const recipe = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("cat_id", cat_id);
-    formData.append("image", image);
-    formData.append("ingredients", ingredients);
-    formData.append("steps", steps);
-    formData.append("cook_time", cook_time);
-    formData.append("about_the_recipe", about_the_recipe);
-    formData.append("serves", serves);
-    formData.append("member_id", member_id);
-    formData.append("instructions", instructions);
+    try {
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("cat_id", cat_id);
+      formData.append("image", image);
+      formData.append("ingredients", ingredients);
+      formData.append("steps", steps);
+      formData.append("cook_time", cook_time);
+      formData.append("about_the_recipe", about_the_recipe);
+      formData.append("serves", serves);
+      formData.append("instructions", instructions);
 
-    await axios
-      .post("http://localhost:5000/recipe", formData)
-
-      .then((response) => {
-        navigate("/recipe_data");
-      })
-      .catch((error) => {
-        if (error.response?.status === 400) {
-          toast.error("Missing Image which is a must  ");
-        }
-      });
+      const response = await api(`/recipe`, "POST", {}, formData);
+    } catch (error) {
+      if (error.response?.status === 400) {
+        toast.error("Missing Image which is a must");
+      } else {
+        console.error("Error submitting recipe:", error);
+      }
+    }
   };
+
   return (
     <div>
       <Navbar />
-   
+
       <div id="top_space2">
         <div className="user-info-body">
           <form method="post" onSubmit={recipe}>
@@ -95,23 +87,21 @@ function AddRecipe() {
 
                   <br />
                   <textarea
-                    rows="4" 
-                    cols="76" 
+                    rows="4"
+                    cols="76"
                     type="text"
                     className="user-inputs"
                     placeholder="ingredients"
                     value={ingredients}
                     onChange={(e) => setIngredients(e.target.value)}
                   />
-                <br/>
+                  <br />
                   <select
                     className="gender"
                     onChange={(e) => setCategory(e.target.value)}
                     value={cat_id}
                   >
-                    <option>
-                      Select a category
-                    </option>
+                    <option>Select a category</option>
                     {categories.map((category) => (
                       <option key={category.id} value={category.id}>
                         {category.name}
@@ -119,17 +109,16 @@ function AddRecipe() {
                     ))}
                   </select>
 
-              
                   <br />
                   <textarea
-                  rows="4" 
-                  cols="76" 
-                  type="text"
-                  className="user-inputs"
-                  placeholder="instructions"
-                  value={instructions}
-                  onChange={(e) => setInstructions(e.target.value)}
-                />
+                    rows="4"
+                    cols="76"
+                    type="text"
+                    className="user-inputs"
+                    placeholder="instructions"
+                    value={instructions}
+                    onChange={(e) => setInstructions(e.target.value)}
+                  />
                   <br />
                   <input
                     type="text"
@@ -140,8 +129,8 @@ function AddRecipe() {
                   />
                   <br />
                   <textarea
-                    rows="4" 
-                    cols="76" 
+                    rows="4"
+                    cols="76"
                     type="text"
                     className="user-inputs"
                     placeholder="about_the_recipe"
@@ -156,9 +145,7 @@ function AddRecipe() {
                     value={serves}
                     onChange={(e) => setServes(e.target.value)}
                   />
-
                 </ul>
-             
 
                 <ul>
                   <h3>Image</h3>
@@ -170,7 +157,7 @@ function AddRecipe() {
                 </ul>
                 <ul>
                   <button className="button-add-recipe" type="submit">
-                     Submit Details 
+                    Submit Details
                   </button>
                 </ul>
               </div>
@@ -178,7 +165,6 @@ function AddRecipe() {
           </form>
         </div>
       </div>
-    
     </div>
   );
 }

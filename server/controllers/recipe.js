@@ -30,7 +30,6 @@ export const getRecipesById = async (req, res) => {
           model: Comments,
         },
       ],
-      
     });
     res.json(getAllById[0]);
   } catch (error) {
@@ -42,8 +41,10 @@ export const createRecipes = async (req, res) => {
   let category;
 
   if (!req.file) {
-    return res.status(400).send({ message: 'No file was uploaded' });
+    return res.status(400).send({ message: "No file was uploaded" });
   }
+
+
 
   try {
     // Check if category already exists
@@ -56,6 +57,11 @@ export const createRecipes = async (req, res) => {
     res.status(500).send({ message: error.message });
   }
 
+  const accessToken = req.user;
+  const user_id = accessToken.userId.id;
+
+  console.log(user_id);
+
   let info = {
     name: req.body.name,
     cat_id: category.id,
@@ -65,25 +71,25 @@ export const createRecipes = async (req, res) => {
     cook_time: req.body.cook_time,
     about_the_recipe: req.body.about_the_recipe,
     serves: req.body.serves,
-    member_id: req.body.member_id,
+    member_id: user_id,
     instructions: req.body.instructions,
   };
 
-
   try {
     const rep = await Recipe.create(info);
-    res.status(201).send({ message: 'Recipe created successfully', data: rep });
+    res.status(201).send({ message: "Recipe created successfully", data: rep });
   } catch (error) {
-    res.status(500).send({ message: 'Failed to create recipe', error });
+    res.status(500).send({ message: "Failed to create recipe", error });
   }
 };
-
 
 export const updateRecipes = async (req, res) => {
   try {
     const id = req.params.id;
     if (!id) {
-      return res.status(400).json({ message: "Missing recipe ID in request params" });
+      return res
+        .status(400)
+        .json({ message: "Missing recipe ID in request params" });
     }
 
     const update = {};
@@ -115,7 +121,9 @@ export const updateRecipes = async (req, res) => {
       update.image = req.file.path;
     }
 
-    const [updatedRowsCount] = await Recipe.update(update, { where: { id: id } });
+    const [updatedRowsCount] = await Recipe.update(update, {
+      where: { id: id },
+    });
     if (!updatedRowsCount) {
       return res.status(404).json({ message: "Recipe not found" });
     }
@@ -124,7 +132,6 @@ export const updateRecipes = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
-
 
 export const deleteRecipes = async (req, res) => {
   try {

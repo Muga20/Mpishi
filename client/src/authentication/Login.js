@@ -18,34 +18,28 @@ function Login() {
 
   const LoginUser = async (e) => {
     e.preventDefault();
+    setError(false);
+
     try {
       const data = {
         username: username,
         password: password,
       };
-      const res = await axios.post(
-        "http://localhost:5000/auth/login",
-        data,
-        setHeaders()
-      );
+      const res = await axios.post("http://localhost:5000/auth/login", data);
 
       localStorage.setItem("user", JSON.stringify(res.data));
       dispatch({ type: "LOGIN", payload: res.data });
-      const role = res.data.role;
+      setHeaders(res.data.accessToken.accessToken);
 
-      if (role === true) {
-        navigate("/recipe_data");
-        toast.success("Comment created successfully");
-      } else if (role === false) {
+      if (res.data) {
         navigate("/");
-      } else {
-        navigate("/login");
+        toast.success("User logged in successfully");
       }
     } catch (error) {
       if (error.response?.status === 400) {
-        toast.error("not yet sign in");
+        toast.error("Not yet signed in");
       } else if (error.response?.status === 401) {
-        toast.error("email and password doesn't much");
+        toast.error("Email and password do not match");
       }
     }
   };

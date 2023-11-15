@@ -1,151 +1,108 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom';  //import useNavigate
-import axios from 'axios';
+import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom"; //import useNavigate
+import axios from "axios";
 import "../resources/css/recipe.css";
-import '../resources/css/navbar.css'
+import "../resources/css/navbar.css";
 import Navbar from "../layouts/Navbar";
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-
-
+import { api } from "../middleware/Api";
 
 function AddBlog() {
-     
-      const [name , setName] = useState('')
-       const [text , setText] = useState('')
-    // const [blog_title , setBlogTitle] = useState('')
-    // const [blog_category , setBlogCategory] = useState('')
-    // const [blog_text , setBlogText] = useState('')
-    const [image , setImage] = useState('')
-    const [user_id , setUserId] = useState('')
-    
-    const navigate = useNavigate(); //initialize useNavigate
-    const inputRef = useRef(null);  //initialize useRef
+  const [name, setName] = useState("");
+  const [text, setText] = useState("");
+  const [image, setImage] = useState("");
 
+  const navigate = useNavigate(); //initialize useNavigate
+  const inputRef = useRef(null); //initialize useRef
 
-    useEffect(() => {
-        const user = JSON.parse(localStorage.getItem("user"));
-        if (user) setUserId(user.id);
-    }, []);
+  function handleClick() {
+    console.log(inputRef.current.value); //get value from inputRef
+  }
 
-
-    function handleClick() {
-      console.log(inputRef.current.value);   //get value from inputRef
+  const createBlogs = async (e) => {
+    e.preventDefault();
+    if (!image || !image[0]) {
+      toast.error("Please select a file");
+      return;
     }
-    
 
+    const formData = new FormData();
 
-    const createBlogs = async (e) => {
-        e.preventDefault()
-        toast.success("Comment created successfully");
-        const formData = new FormData()
+    formData.append("name", name);
+    formData.append("text", text);
+    formData.append("image", image[0]); // Assuming you want to handle only the first file if multiple are selected
 
-        formData.append('name', name)
-        formData.append('text', text)
-        formData.append('image', image)
+    try {
+      const response = await api(
+        `/blogs`,
+        "POST",
+        {
+          "Content-Type": "multipart/form-data", // Set the Content-Type header
+        },
+        formData
+      );
 
-        // formData.append('blog_title', blog_title)
-        // formData.append('blog_category', blog_category)
-        // formData.append('blog_text', blog_text)
-        // formData.append('image', image)
-        // formData.append('user_id', user_id);
-       
-        try {
-            await axios.post('http://localhost:5000/blogs', formData,)
-             
-           // navigate('/user-blogs')
-           
-        } catch (error) {
-            console.log(error)
-
-            toast.error("Comment not created");
-        }
+      // Handle the response as needed
+    } catch (error) {
+      console.log(error);
     }
+  };
+
   return (
     <div>
-    <Navbar />
-    <div id="top_space2">
-      <div className="user-info-body">
-        <form method="post" onSubmit={createBlogs}>
-          <div className="user-container-div-2">
-            <div className="About">
-              <ul>
-                <h1>Add a Blog </h1>
-              </ul>
+      <Navbar />
+      <div id="top_space2">
+        <div className="user-info-body">
+          <form method="post" onSubmit={createBlogs}>
+            <div className="user-container-div-2">
+              <div className="About">
+                <ul>
+                  <h1>Add a Blog </h1>
+                </ul>
 
-              <ul>
-                <input
-                  type="text"
-                  className="user-inputs"
-                  placeholder="Name"
-                  value={ name }
-                  onChange={(e) => setName(e.target.value)}
-                />
-                <br />
-                <input
-                type="text"
-                className="user-inputs"
-                placeholder="Text"
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-              />
+                <ul>
+                  <input
+                    type="text"
+                    className="user-inputs"
+                    placeholder="Name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                  <br />
+                  <input
+                    type="text"
+                    className="user-inputs"
+                    placeholder="Text"
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                  />
 
-                <br />
-                {/** 
-                <textarea
-                  rows="4" 
-                  cols="76" 
-                  type="text"
-                  className="user-inputs"
-                  placeholder="Blog Text"
-                  value={blog_text}
-                  onChange={(e) => setBlogText(e.target.value)}
-                />
-              */}
-              
-              <br/>
+                  <br />
 
-              </ul>
-              <h3>Please consider uploading a quality picture</h3>
-              <ul>
-                <h3>Image</h3>
-                <input
-                className="inputFile"
-                type="file"
-                onChange={(e) => setImage(e.target.files)}
-                multiple
-              />
-              
-              </ul>
-              <ul>
-             
-                <button className="button-add-recipe" type="submit">
-                   PostBlog
-                </button>
-              </ul>
+                  <br />
+                </ul>
+                <h3>Please consider uploading a quality picture</h3>
+                <ul>
+                  <h3>Image</h3>
+                  <input
+                    className="inputFile"
+                    type="file"
+                    onChange={(e) => setImage(e.target.files)}
+                    multiple
+                  />
+                </ul>
+                <ul>
+                  <button className="button-add-recipe" type="submit">
+                    PostBlog
+                  </button>
+                </ul>
+              </div>
             </div>
-          </div>
-        </form>
-    
+          </form>
+        </div>
+      </div>
     </div>
-
-<ToastContainer
-position="top-center"
-autoClose={2200}
-hideProgressBar={false}
-newestOnTop
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-theme="dark"
-/>
-    </div>
-    </div>
-  )
+  );
 }
 
-export default AddBlog
+export default AddBlog;

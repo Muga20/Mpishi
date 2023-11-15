@@ -16,17 +16,19 @@ export const getAllBlogs = async (req, res) => {
 
 export const getEachMembersBlogs = async (req, res) => {
   try {
-    const userId = req.params.id;
+    const accessToken = req.user;
+    const user_id = accessToken.userId.id;
+
     const listAllBlogs = await Blogs.findAll({
       include: [
         {
           model: Members,BlogsComment,
-          where: { id: userId },
+          where: { id: user_id },
         },
        
       ],
     });
-    res.json(listAllBlogs);
+    res.json({listAllBlogs});
   } catch (error) {
     res.json({ message: error.message });
   }
@@ -56,7 +58,10 @@ export const createBlogs = async (req, res) => {
   }
 
   try {
-    const { blog_text, blog_title, blog_category, user_id } = req.body;
+    const { blog_text, blog_title, blog_category } = req.body;
+
+    const accessToken = req.user;
+    const user_id = accessToken.userId.id;
 
     try {
       const newBlogs = await Blogs.create({
