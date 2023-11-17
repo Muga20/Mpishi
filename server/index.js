@@ -8,7 +8,7 @@ import CategoryRoutes from "./routes/category.js";
 import CommentsRoutes from "./routes/comments.js";
 import ContactRoutes from "./routes/feedback.js";
 import AuthRoutes from "./routes/auth.js";
-import cors from 'cors';
+import cors from "cors";
 import bodyParser from "body-parser";
 
 // Create an Express application
@@ -33,12 +33,16 @@ db.authenticate()
     console.error("Unable to connect to the database:", error);
   });
 
+// Serve static files from the React app
+app.use("/Images", express.static("./Images"));
+
+
 app.use(cors());
 app.use(bodyParser.json());
-app.use('/members', UsersRoutes);
-app.use('/blogs', BlogRoutes);
-app.use('/recipe', RecipeRoutes);
-app.use('/category', CategoryRoutes);
-app.use('/comments', CommentsRoutes);
-app.use('/contact', ContactRoutes);
-app.use('/auth', AuthRoutes);
+app.use("/members", UsersRoutes);
+app.use("/blogs", BlogRoutes);
+app.use("/recipe", RecipeRoutes);
+app.use("/category", CategoryRoutes);
+app.use("/comments", CommentsRoutes);
+app.use("/contact", ContactRoutes);
+app.use("/auth", AuthRoutes);
