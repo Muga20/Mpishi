@@ -21,11 +21,7 @@ function AddBlog() {
 
   const createBlogs = async (e) => {
     e.preventDefault();
-    if (!image || !image[0]) {
-      toast.error("Please select a file");
-      return;
-    }
-
+  
     const formData = new FormData();
 
     formData.append("name", name);
