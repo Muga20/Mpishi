@@ -36,6 +36,8 @@ db.authenticate()
 // Serve static files from the React app
 app.use("/Images", express.static("./Images"));
 
+// Serve static files from the React app
+app.use("/Images", express.static("./Images"));
 
 app.use(cors());
 app.use(bodyParser.json());
