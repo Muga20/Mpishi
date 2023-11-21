@@ -21,15 +21,17 @@ function DisplayBlogs() {
     }
   };
 
+   useEffect(() => {
+    getBlog();
+  }, []);
+
+
   const deleteBlog = async (id) => {
     const response = await api(`/blogs`, "DELETE", {}, { id });
     getBlog();
   };
 
-  useEffect(() => {
-    getBlog();
-  }, []);
-
+ 
   return (
     <div>
       <Navbar />
