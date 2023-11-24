@@ -12,8 +12,8 @@ function AddBlog() {
   const [text, setText] = useState("");
   const [image, setImage] = useState("");
 
-  const navigate = useNavigate(); //initialize useNavigate
-  const inputRef = useRef(null); //initialize useRef
+  const navigate = useNavigate();
+ const inputRef = useRef(null);
 
   function handleClick() {
     console.log(inputRef.current.value); //get value from inputRef
